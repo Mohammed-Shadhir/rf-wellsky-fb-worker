@@ -1,14 +1,13 @@
 *** Settings ***
-
-Library    RPA.Browser.Playwright
+Library     RPA.Browser.Playwright
 Resource    ./robots/resources/variables.resource
 
 
 *** Keywords ***
 check-page-title-and-data-form-name
     [Documentation]    validates page title and data form name
-    [Arguments]    ${title}    ${data_form}
     [Tags]    function
+    [Arguments]    ${title}    ${data_form}
     ${has_precondition_passed}=    Set Variable    ${False}
     ${login_form_name}=    RPA.Browser.Playwright.Get Element    ${data_form}
     ${form_name}=    Get Attribute    ${login_form_name}    data-form-name

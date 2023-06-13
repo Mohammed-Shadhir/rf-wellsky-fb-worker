@@ -1,5 +1,5 @@
 *** Settings ***
-Library     CustomLogListener
+# Library    CustomLogListener
 
 
 *** Keywords ***

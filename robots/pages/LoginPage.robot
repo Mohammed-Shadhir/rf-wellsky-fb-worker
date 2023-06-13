@@ -1,5 +1,7 @@
 *** Settings ***
-Library    RPA.Browser.Playwright
+Library     RPA.Browser.Playwright
+Library    Config
+Library    XML
 Resource    ./robots/exceptions/Exception.robot
 Resource    ./robots/functions/commons/CommonUtilities.robot
 Resource    ./robots/components/InputTextComponent.robot
@@ -7,26 +9,23 @@ Resource    ./robots/components/ButtonComponent.robot
 Resource    ./robots/components/commons/ComponentStatus.robot
 
 *** Variables ***
+${login_page_xpath}=        //title
+${login_page_css}=          form[id="loginform"]
+${global-retry-count}=      3
 
-${login_page_xpath}=    //title
-${login_page_css}=    form[id="loginform"]
-${global-retry-count}=    3
-*** Tasks ***
-test
-    launch
-    Sleep    3s
-    set-username    Test
-    set-password
-    sleep    3s
-    perform-login
+
 *** Keywords ***
+load-selectors
+    ${selectors}=    Config.Initialize Selectors    ./yamls/selectors.yaml
+    Set Global Variable    ${selectors}
 launch
     New Browser    chromium    headless=False
     New Context    viewport={'width': 1280, 'height': 720}    acceptDownloads=True    ignoreHTTPSErrors=False
     New Page    https://www.kinnser.net
+
 set-username
     [Arguments]    ${username}
-#checking for valid lnding page
+# checking for valid lnding page
     ${is_valid_landing_page}=    CommonUtilities.check-page-title-and-data-form-name
     ...    xpath=${login_page_xpath}
     ...    css=${login_page_css}
@@ -34,18 +33,19 @@ set-username
         Exception.custom-fail    ${LOGIN_PAGE_NOT_LOADED_ERROR}
     END
     TRY
-        #${user-name-selector}=    get-loginform-selector    username
-        InputTextComponent.set-value    id=username    ${username}    ${global-retry-count}
+        ${user-name-selector}=    get-loginform-selector    username
+        Log To Console    ${user-name-selector}
+        InputTextComponent.set-value    ${user-name-selector}    ${username}    ${global-retry-count}    #id=username
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${USERNAME_FIELD_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_EDITABLE}
         Exception.custom-fail    ${USERNAME_FIELD_NOT_EDITABLE}
     EXCEPT    ${POSTCONDITION_FAILED}
         Exception.custom-fail    ${USERNAME_FIELD_VALUE_NOT_POPULATED}
-    END   
+    END
 
 set-password
-    #PreCondition guard
+    # PreCondition guard
     ${has_precondition_passed}=    CommonUtilities.check-page-title-and-data-form-name
     ...    xpath=${login_page_xpath}
     ...    css=${login_page_css}
@@ -54,53 +54,54 @@ set-password
     END
 
     TRY
-        #${password-selector}=    get-loginform-selector    password
-        InputTextComponent.set-password-secret    id=password    ${global-retry-count}
+        ${password-selector}=    get-loginform-selector    password
+        InputTextComponent.set-password-secret    ${password-selector}    ${global-retry-count}    #id=password
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${PASSWORD_FIELD_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_EDITABLE}
         Exception.custom-fail    ${PASSWORD_FIELD_NOT_EDITABLE}
     EXCEPT    ${POSTCONDITION_FAILED}
-        #PostCondition guard
+        # PostCondition guard
         Exception.custom-fail    ${PASSWORD_FIELD_VALUE_NOT_POPULATED}
     END
+
 perform-login
     Sleep    1s
-    #PreCondition guard
+    # PreCondition guard
     ${has_precondition_passed}=    CommonUtilities.check-page-title-and-data-form-name
     ...    xpath=${login_page_xpath}
     ...    css=${login_page_css}
     IF    ${has_precondition_passed} == ${False}
         Exception.custom-fail    ${LOGIN_PAGE_NOT_LOADED_ERROR}
     END
-    
+
     TRY
-        #${login-button-selector}=    get-loginform-selector    login-btn
+        ${login-button-selector}=    get-loginform-selector    login-btn
         Handle Future Dialogs    action=accept
-        ButtonComponent.left-click    xpath=//button[@id='login_btn']
+        ButtonComponent.left-click    ${login-button-selector}    #xpath=//button[@id='login_btn']
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${LOGIN_BUTTON_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_ENABLED}
         Exception.custom-fail    ${LOGIN_BUTTON_NOT_ENABLED}
     END
 
-    
-    #${error-message-selector}=    get-loginform-selector    error-message
-    ${error-message-selector}=    Set Variable    xpath=//div[@id="warning-alerts"]/div/div[@role="status"]
+    ${error-message-selector}=    get-loginform-selector    error-message
+    ${error-message-selector}=    Set Variable    #xpath=//div[@id="warning-alerts"]/div/div[@role="status"]
     Sleep    2s
     ${is-attached}=    ComponentStatus.is-attached    ${error-message-selector}
     IF    ${is-attached} == ${True}
         ${error-message-selector-element}=    RPA.Browser.Playwright.Get Element    ${error-message-selector}
         ${login-error-message}=    Get Property    ${error-message-selector-element}    innerHTML
-        Log To Console    ${login-error-message}+test
-        ${is_invalid_credential}=    CommonUtilities.check-string-contains    ${login-error-message}        You have entered an invalid username or password
-    IF    ${is_invalid_credential}
-        Exception.custom-fail    ${INVALID_CREDENTIALS_ERROR}
+        ${is_invalid_credential}=    CommonUtilities.check-string-contains
+        ...    ${login-error-message}
+        ...    You have entered an invalid username or password
+        IF    ${is_invalid_credential}
+            Exception.custom-fail    ${INVALID_CREDENTIALS_ERROR}
+        END
     END
-    END
-    
-    #PostCondition guard
-    #${headermenu-selector}=    get-headermenu-selector
+
+    # PostCondition guard
+    # ${headermenu-selector}=    get-headermenu-selector
     ${login_postcondition_flag}=    ComponentStatus.is-visible    xpath=//tbody//div[@class="menuBar"]
     IF    ${login_postcondition_flag} == ${False}
         ${has_precondition_passed}=    CommonUtilities.check-page-title-and-data-form-name
@@ -114,8 +115,8 @@ perform-login
             Log To Console    <== After clicking the login button, still in the login page ==>
         END
         Exception.custom-fail    ${HOME_PAGE_NOT_FOUND_ERROR}
-    END 
+    END
 
 get-loginform-selector
     [Arguments]    ${field-selector}
-    RETURN    ${selectors}[e5][devero][loginpage][loginform][${field-selector}]
+    RETURN    ${selectors}[e5][wellsky][loginpage][loginform][${field-selector}]
