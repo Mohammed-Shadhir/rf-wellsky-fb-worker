@@ -1,0 +1,10 @@
+#The selector for the wellsky web application
+e5:
+  wellsky:
+    loginpage:
+      title: //title
+      loginform:
+        username: id=username
+        password: id=password
+        login-btn: id=loginButton
+        error-message: id=message
