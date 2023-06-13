@@ -1,0 +1,1543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20230613 15:36:24.189" rpa="true" schemaversion="3">
+<suite id="s1" name="Wellskyheader" source="d:\Users\mohammed.shadhir\Documents\robo-framework\E5 Repo\rf-wellsky-fb-worker-private\robots\pages\wellsky\common\wellskyheader.robot">
+<test id="s1-t1" name="click_logout" line="10">
+<kw name="launch" library="CommonUtilities">
+<kw name="New Browser" library="RPA.Browser.Playwright">
+<arg>chromium</arg>
+<arg>headless=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<msg timestamp="20230613 15:36:28.077" level="INFO">{"browser": "chromium", "headless": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "deprecated_pos_args": [], "tracesDir": "D:\\Users\\mohammed.shadhir\\Documents\\robo-framework\\E5 Repo\\rf-wellsky-fb-worker-private\\browser\\traces\\79eb7f79-258c-4337-a242-8873c837ffcd"}</msg>
+<msg timestamp="20230613 15:36:29.074" level="INFO">Successfully created browser with options: {"browser":"chromium","headless":false,"devtools":false,"handleSIGHUP":true,"handleSIGINT":true,"handleSIGTERM":true,"slowMo":0,"timeout":30000,"deprecated_pos_args":[],"tracesDir":"D:\\Users\\mohammed.shadhir\\Documents\\robo-framework\\E5 Repo\\rf-wellsky-fb-worker-private\\browser\\traces\\79eb7f79-258c-4337-a242-8873c837ffcd"}</msg>
+<status status="PASS" starttime="20230613 15:36:28.069" endtime="20230613 15:36:29.076"/>
+</kw>
+<kw name="New Context" library="RPA.Browser.Playwright">
+<arg>viewport={'width': 1280, 'height': 720}</arg>
+<arg>acceptDownloads=True</arg>
+<arg>ignoreHTTPSErrors=False</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new BrowserContext with specified options.</doc>
+<msg timestamp="20230613 15:36:29.098" level="INFO">{
+  "acceptDownloads": true,
+  "bypassCSP": false,
+  "forcedColors": "none",
+  "hideRfBrowser": false,
+  "ignoreHTTPSErrors": false,
+  "javaScriptEnabled": true,
+  "offline": false,
+  "reducedMotion": "no-preference",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "deprecated_pos_args": []
+}</msg>
+<msg timestamp="20230613 15:36:29.157" level="INFO">Successfully created context. </msg>
+<msg timestamp="20230613 15:36:29.159" level="INFO">{'acceptDownloads': True, 'bypassCSP': False, 'forcedColors': 'none', 'hideRfBrowser': False, 'ignoreHTTPSErrors': False, 'javaScriptEnabled': True, 'offline': False, 'reducedMotion': 'no-preference', 'viewport': {'width': 1280, 'height': 720}, 'deprecated_pos_args': []}</msg>
+<status status="PASS" starttime="20230613 15:36:29.079" endtime="20230613 15:36:29.160"/>
+</kw>
+<kw name="New Page" library="RPA.Browser.Playwright">
+<arg>https://www.kinnser.net</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<msg timestamp="20230613 15:36:30.336" level="INFO">Successfully initialized new page object and opened url: https://www.kinnser.net</msg>
+<status status="PASS" starttime="20230613 15:36:29.163" endtime="20230613 15:36:30.338"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:28.064" endtime="20230613 15:36:30.341"/>
+</kw>
+<kw name="set-username" library="LoginPage">
+<arg>E5Bot1</arg>
+<kw name="check-page-title-and-data-form-name" library="CommonUtilities">
+<var>${is_valid_landing_page}</var>
+<arg>xpath=${login_page_xpath}</arg>
+<arg>css=${login_page_css}</arg>
+<tag>function</tag>
+<doc>validates page title and data form name</doc>
+<kw name="Set Variable" library="BuiltIn">
+<var>${has_precondition_passed}</var>
+<arg>${False}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230613 15:36:30.373" level="INFO">${has_precondition_passed} = False</msg>
+<status status="PASS" starttime="20230613 15:36:30.367" endtime="20230613 15:36:30.374"/>
+</kw>
+<kw name="Get Element" library="RPA.Browser.Playwright">
+<var>${login_form_name}</var>
+<arg>${data_form}</arg>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns a reference to a Playwright [https://playwright.dev/docs/api/class-locator|Locator].</doc>
+<msg timestamp="20230613 15:36:30.972" level="INFO">Locator found successfully.</msg>
+<msg timestamp="20230613 15:36:30.974" level="INFO">${login_form_name} = element=9139e5d3-3b49-4a0f-9389-46c66aa1e15c</msg>
+<status status="PASS" starttime="20230613 15:36:30.378" endtime="20230613 15:36:30.975"/>
+</kw>
+<kw name="Get Attribute" library="RPA.Browser.Playwright">
+<var>${form_name}</var>
+<arg>${login_form_name}</arg>
+<arg>id</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the HTML ``attribute`` of the element found by ``selector``.</doc>
+<msg timestamp="20230613 15:36:31.017" level="INFO">${form_name} = loginform</msg>
+<status status="PASS" starttime="20230613 15:36:30.979" endtime="20230613 15:36:31.018"/>
+</kw>
+<kw name="Get Element" library="RPA.Browser.Playwright">
+<var>${title_element}</var>
+<arg>${title}</arg>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns a reference to a Playwright [https://playwright.dev/docs/api/class-locator|Locator].</doc>
+<msg timestamp="20230613 15:36:31.039" level="INFO">Locator found successfully.</msg>
+<msg timestamp="20230613 15:36:31.040" level="INFO">${title_element} = element=fe555ab4-3917-4914-b37d-4f30a8685801</msg>
+<status status="PASS" starttime="20230613 15:36:31.021" endtime="20230613 15:36:31.041"/>
+</kw>
+<kw name="Get Property" library="RPA.Browser.Playwright">
+<var>${page_title}</var>
+<arg>${title_element}</arg>
+<arg>innerHTML</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the ``property`` of the element found by ``selector``.</doc>
+<msg timestamp="20230613 15:36:31.069" level="INFO">${page_title} = Kinnser Software</msg>
+<status status="PASS" starttime="20230613 15:36:31.043" endtime="20230613 15:36:31.070"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${form_name}&quot; == &quot;loginform&quot; and &quot;${page_title}&quot; == &quot;Kinnser Software&quot;">
+<kw name="Set Variable" library="BuiltIn">
+<var>${has_precondition_passed}</var>
+<arg>${True}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230613 15:36:31.077" level="INFO">${has_precondition_passed} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.075" endtime="20230613 15:36:31.078"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:31.072" endtime="20230613 15:36:31.079"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:31.071" endtime="20230613 15:36:31.080"/>
+</if>
+<return>
+<value>${has_precondition_passed}</value>
+<status status="PASS" starttime="20230613 15:36:31.081" endtime="20230613 15:36:31.083"/>
+</return>
+<msg timestamp="20230613 15:36:31.086" level="INFO">${is_valid_landing_page} = True</msg>
+<status status="PASS" starttime="20230613 15:36:30.356" endtime="20230613 15:36:31.087"/>
+</kw>
+<if>
+<branch type="IF" condition="${is_valid_landing_page} == ${false}">
+<kw name="custom-fail" library="Exception">
+<arg>${LOGIN_PAGE_NOT_LOADED_ERROR}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:31.092" endtime="20230613 15:36:31.093"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:31.090" endtime="20230613 15:36:31.094"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:31.088" endtime="20230613 15:36:31.095"/>
+</if>
+<try>
+<branch type="TRY">
+<kw name="set-value" library="InputTextComponent">
+<arg>id=username</arg>
+<arg>${username}</arg>
+<arg>${global-retry-count}</arg>
+<tag>component</tag>
+<doc>Updates Field Value and checks for post condition
+And retries if the retry value is provided</doc>
+<kw name="fail-if-not-attached" library="Validation">
+<arg>${selector}</arg>
+<tag>validation</tag>
+<doc>Throws error if the element is not attanched to the DOM</doc>
+<kw name="is-attached" library="ComponentStatus">
+<var>${is-attached}</var>
+<arg>${selector}</arg>
+<tag>component</tag>
+<doc>checks whether the given selector is attached to the DOM</doc>
+<kw name="get-element-state" library="ComponentStatus">
+<var>${result}</var>
+<arg>${selector}</arg>
+<arg>${ELEMENT_STATE_ATTACHED}</arg>
+<tag>component</tag>
+<doc>Used to get the element state</doc>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${result}</var>
+<arg>Wait For Elements State</arg>
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait For Elements State" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<msg timestamp="20230613 15:36:31.217" level="INFO">Waited for Element with selector id=username at state attached</msg>
+<status status="PASS" starttime="20230613 15:36:31.128" endtime="20230613 15:36:31.219"/>
+</kw>
+<msg timestamp="20230613 15:36:31.221" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.123" endtime="20230613 15:36:31.221"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:31.223" endtime="20230613 15:36:31.225"/>
+</return>
+<msg timestamp="20230613 15:36:31.228" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.115" endtime="20230613 15:36:31.229"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:31.230" endtime="20230613 15:36:31.232"/>
+</return>
+<msg timestamp="20230613 15:36:31.235" level="INFO">${is-attached} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.109" endtime="20230613 15:36:31.236"/>
+</kw>
+<if>
+<branch type="IF" condition="${is-attached} == ${False}">
+<kw name="Fail" library="BuiltIn">
+<arg>${ELEMENT_NOT_ATTACHED}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:31.243" endtime="20230613 15:36:31.246"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:31.240" endtime="20230613 15:36:31.248"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:31.238" endtime="20230613 15:36:31.250"/>
+</if>
+<status status="PASS" starttime="20230613 15:36:31.104" endtime="20230613 15:36:31.252"/>
+</kw>
+<kw name="fail-if-not-editable" library="Validation">
+<arg>${selector}</arg>
+<tag>validation</tag>
+<doc>Throws error if the element is not editable</doc>
+<kw name="is-editable" library="ComponentStatus">
+<var>${is-editable}</var>
+<arg>${selector}</arg>
+<tag>component</tag>
+<doc>checks whether the given selector is editable</doc>
+<kw name="get-element-state" library="ComponentStatus">
+<var>${result}</var>
+<arg>${selector}</arg>
+<arg>${ELEMENT_STATE_EDITABLE}</arg>
+<tag>component</tag>
+<doc>Used to get the element state</doc>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${result}</var>
+<arg>Wait For Elements State</arg>
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait For Elements State" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<msg timestamp="20230613 15:36:31.303" level="INFO">Waited for Element with selector id=username at state editable</msg>
+<status status="PASS" starttime="20230613 15:36:31.274" endtime="20230613 15:36:31.304"/>
+</kw>
+<msg timestamp="20230613 15:36:31.306" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.271" endtime="20230613 15:36:31.306"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:31.307" endtime="20230613 15:36:31.309"/>
+</return>
+<msg timestamp="20230613 15:36:31.311" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.266" endtime="20230613 15:36:31.312"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:31.312" endtime="20230613 15:36:31.313"/>
+</return>
+<msg timestamp="20230613 15:36:31.316" level="INFO">${is-editable} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.260" endtime="20230613 15:36:31.316"/>
+</kw>
+<if>
+<branch type="IF" condition="${is-editable} == ${False}">
+<kw name="Fail" library="BuiltIn">
+<arg>${ELEMENT_NOT_EDITABLE}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:31.321" endtime="20230613 15:36:31.322"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:31.318" endtime="20230613 15:36:31.323"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:31.317" endtime="20230613 15:36:31.324"/>
+</if>
+<status status="PASS" starttime="20230613 15:36:31.254" endtime="20230613 15:36:31.326"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${retry_count}</arg>
+<arg>1s</arg>
+<arg>fill-text-and-validate-post-condition</arg>
+<arg>${selector}</arg>
+<arg>${value}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="fill-text-and-validate-post-condition" library="InputTextComponent">
+<arg>${selector}</arg>
+<arg>${value}</arg>
+<tag>component</tag>
+<tag>robot:private</tag>
+<doc>Updates the Field value and checks for post condition
+And retries if the retry value is provided</doc>
+<kw name="Scroll To Element" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>This method waits for actionability checks, then tries to scroll element into view,
+unless it is completely visible.</doc>
+<status status="PASS" starttime="20230613 15:36:31.336" endtime="20230613 15:36:31.375"/>
+</kw>
+<kw name="Fill Text" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>${value}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<msg timestamp="20230613 15:36:31.379" level="INFO">Fills the text 'E5Bot1' in the given field.</msg>
+<status status="PASS" starttime="20230613 15:36:31.376" endtime="20230613 15:36:31.411"/>
+</kw>
+<kw name="fail-if-value-not-populated" library="InputTextComponent">
+<arg>${selector}</arg>
+<arg>${value}</arg>
+<tag>component</tag>
+<tag>robot:private</tag>
+<doc>Fails if the value is not populated in the given input field</doc>
+<kw name="get-value" library="InputTextComponent">
+<var>${populated_value}</var>
+<arg>${selector}</arg>
+<tag>component</tag>
+<doc>Reads Field Value</doc>
+<kw name="fail-if-not-attached" library="Validation">
+<arg>${selector}</arg>
+<tag>validation</tag>
+<doc>Throws error if the element is not attanched to the DOM</doc>
+<kw name="is-attached" library="ComponentStatus">
+<var>${is-attached}</var>
+<arg>${selector}</arg>
+<tag>component</tag>
+<doc>checks whether the given selector is attached to the DOM</doc>
+<kw name="get-element-state" library="ComponentStatus">
+<var>${result}</var>
+<arg>${selector}</arg>
+<arg>${ELEMENT_STATE_ATTACHED}</arg>
+<tag>component</tag>
+<doc>Used to get the element state</doc>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${result}</var>
+<arg>Wait For Elements State</arg>
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait For Elements State" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<msg timestamp="20230613 15:36:31.456" level="INFO">Waited for Element with selector id=username at state attached</msg>
+<status status="PASS" starttime="20230613 15:36:31.435" endtime="20230613 15:36:31.457"/>
+</kw>
+<msg timestamp="20230613 15:36:31.459" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.432" endtime="20230613 15:36:31.460"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:31.461" endtime="20230613 15:36:31.463"/>
+</return>
+<msg timestamp="20230613 15:36:31.465" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.428" endtime="20230613 15:36:31.466"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:31.467" endtime="20230613 15:36:31.468"/>
+</return>
+<msg timestamp="20230613 15:36:31.471" level="INFO">${is-attached} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.425" endtime="20230613 15:36:31.472"/>
+</kw>
+<if>
+<branch type="IF" condition="${is-attached} == ${False}">
+<kw name="Fail" library="BuiltIn">
+<arg>${ELEMENT_NOT_ATTACHED}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:31.475" endtime="20230613 15:36:31.477"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:31.473" endtime="20230613 15:36:31.478"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:31.473" endtime="20230613 15:36:31.479"/>
+</if>
+<status status="PASS" starttime="20230613 15:36:31.422" endtime="20230613 15:36:31.481"/>
+</kw>
+<kw name="Get Element" library="RPA.Browser.Playwright">
+<var>${fieldTextElement}</var>
+<arg>${selector}</arg>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns a reference to a Playwright [https://playwright.dev/docs/api/class-locator|Locator].</doc>
+<msg timestamp="20230613 15:36:31.507" level="INFO">Locator found successfully.</msg>
+<msg timestamp="20230613 15:36:31.508" level="INFO">${fieldTextElement} = element=af8400b0-3ea0-4602-9ead-3cc6278e78df</msg>
+<status status="PASS" starttime="20230613 15:36:31.485" endtime="20230613 15:36:31.509"/>
+</kw>
+<kw name="Get Property" library="RPA.Browser.Playwright">
+<var>${fieldTextValue}</var>
+<arg>${fieldTextElement}</arg>
+<arg>value</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the ``property`` of the element found by ``selector``.</doc>
+<msg timestamp="20230613 15:36:31.563" level="INFO">${fieldTextValue} = E5Bot1</msg>
+<status status="PASS" starttime="20230613 15:36:31.512" endtime="20230613 15:36:31.564"/>
+</kw>
+<return>
+<value>${fieldTextValue}</value>
+<status status="PASS" starttime="20230613 15:36:31.565" endtime="20230613 15:36:31.567"/>
+</return>
+<msg timestamp="20230613 15:36:31.570" level="INFO">${populated_value} = E5Bot1</msg>
+<status status="PASS" starttime="20230613 15:36:31.418" endtime="20230613 15:36:31.570"/>
+</kw>
+<kw name="compare-strings" library="CommonUtilities">
+<var>${matches}</var>
+<arg>${populated_value}</arg>
+<arg>${value}</arg>
+<tag>function</tag>
+<doc>Method used to compare the strings</doc>
+<kw name="Evaluate JavaScript" library="RPA.Browser.Playwright">
+<var>${result}</var>
+<arg>${None}</arg>
+<arg>() =&gt; `${string1}` === `${string2}`</arg>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Executes given javascript on the selected element(s) or on page.</doc>
+<msg timestamp="20230613 15:36:31.596" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.579" endtime="20230613 15:36:31.597"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:31.598" endtime="20230613 15:36:31.600"/>
+</return>
+<msg timestamp="20230613 15:36:31.604" level="INFO">${matches} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.573" endtime="20230613 15:36:31.605"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${matches}&quot; == &quot;${False}&quot;">
+<kw name="Fail" library="BuiltIn">
+<arg>${POSTCONDITION_FAILED}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:31.610" endtime="20230613 15:36:31.611"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:31.608" endtime="20230613 15:36:31.613"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:31.607" endtime="20230613 15:36:31.614"/>
+</if>
+<status status="PASS" starttime="20230613 15:36:31.413" endtime="20230613 15:36:31.616"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:31.333" endtime="20230613 15:36:31.618"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:31.329" endtime="20230613 15:36:31.620"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:31.327" endtime="20230613 15:36:31.621"/>
+</branch>
+<branch type="EXCEPT" variable="${err_msg}">
+<kw name="get-error-message-from-retry-exception-template" library="Exception">
+<var>${actual_err_msg}</var>
+<arg>${err_msg}</arg>
+<tag>exception</tag>
+<doc>Method used to get the actual error message from string(Error msg from retry)</doc>
+<status status="NOT RUN" starttime="20230613 15:36:31.628" endtime="20230613 15:36:31.630"/>
+</kw>
+<kw name="custom-fail" library="Exception">
+<arg>${actual_err_msg}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:31.633" endtime="20230613 15:36:31.634"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:31.625" endtime="20230613 15:36:31.636"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:31.327" endtime="20230613 15:36:31.638"/>
+</try>
+<status status="PASS" starttime="20230613 15:36:31.099" endtime="20230613 15:36:31.639"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:31.097" endtime="20230613 15:36:31.641"/>
+</branch>
+<branch type="EXCEPT">
+<pattern>${ELEMENT_NOT_ATTACHED}</pattern>
+<kw name="custom-fail" library="Exception">
+<arg>${USERNAME_FIELD_NOT_ATTACHED}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:31.645" endtime="20230613 15:36:31.647"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:31.643" endtime="20230613 15:36:31.652"/>
+</branch>
+<branch type="EXCEPT">
+<pattern>${ELEMENT_NOT_EDITABLE}</pattern>
+<kw name="custom-fail" library="Exception">
+<arg>${USERNAME_FIELD_NOT_EDITABLE}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:31.658" endtime="20230613 15:36:31.661"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:31.654" endtime="20230613 15:36:31.662"/>
+</branch>
+<branch type="EXCEPT">
+<pattern>${POSTCONDITION_FAILED}</pattern>
+<kw name="custom-fail" library="Exception">
+<arg>${USERNAME_FIELD_VALUE_NOT_POPULATED}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:31.667" endtime="20230613 15:36:31.669"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:31.665" endtime="20230613 15:36:31.671"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:31.096" endtime="20230613 15:36:31.673"/>
+</try>
+<status status="PASS" starttime="20230613 15:36:30.348" endtime="20230613 15:36:31.675"/>
+</kw>
+<kw name="set-password" library="LoginPage">
+<kw name="check-page-title-and-data-form-name" library="CommonUtilities">
+<var>${has_precondition_passed}</var>
+<arg>xpath=${login_page_xpath}</arg>
+<arg>css=${login_page_css}</arg>
+<tag>function</tag>
+<doc>validates page title and data form name</doc>
+<kw name="Set Variable" library="BuiltIn">
+<var>${has_precondition_passed}</var>
+<arg>${False}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230613 15:36:31.692" level="INFO">${has_precondition_passed} = False</msg>
+<status status="PASS" starttime="20230613 15:36:31.689" endtime="20230613 15:36:31.693"/>
+</kw>
+<kw name="Get Element" library="RPA.Browser.Playwright">
+<var>${login_form_name}</var>
+<arg>${data_form}</arg>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns a reference to a Playwright [https://playwright.dev/docs/api/class-locator|Locator].</doc>
+<msg timestamp="20230613 15:36:31.721" level="INFO">Locator found successfully.</msg>
+<msg timestamp="20230613 15:36:31.723" level="INFO">${login_form_name} = element=11cd8395-68ec-43f9-8c52-27dc735cdeb6</msg>
+<status status="PASS" starttime="20230613 15:36:31.695" endtime="20230613 15:36:31.724"/>
+</kw>
+<kw name="Get Attribute" library="RPA.Browser.Playwright">
+<var>${form_name}</var>
+<arg>${login_form_name}</arg>
+<arg>id</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the HTML ``attribute`` of the element found by ``selector``.</doc>
+<msg timestamp="20230613 15:36:31.770" level="INFO">${form_name} = loginform</msg>
+<status status="PASS" starttime="20230613 15:36:31.727" endtime="20230613 15:36:31.771"/>
+</kw>
+<kw name="Get Element" library="RPA.Browser.Playwright">
+<var>${title_element}</var>
+<arg>${title}</arg>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns a reference to a Playwright [https://playwright.dev/docs/api/class-locator|Locator].</doc>
+<msg timestamp="20230613 15:36:31.798" level="INFO">Locator found successfully.</msg>
+<msg timestamp="20230613 15:36:31.799" level="INFO">${title_element} = element=47cb00c5-8f45-4ddb-a7cd-12c88711efc7</msg>
+<status status="PASS" starttime="20230613 15:36:31.775" endtime="20230613 15:36:31.800"/>
+</kw>
+<kw name="Get Property" library="RPA.Browser.Playwright">
+<var>${page_title}</var>
+<arg>${title_element}</arg>
+<arg>innerHTML</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the ``property`` of the element found by ``selector``.</doc>
+<msg timestamp="20230613 15:36:31.823" level="INFO">${page_title} = Kinnser Software</msg>
+<status status="PASS" starttime="20230613 15:36:31.802" endtime="20230613 15:36:31.824"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${form_name}&quot; == &quot;loginform&quot; and &quot;${page_title}&quot; == &quot;Kinnser Software&quot;">
+<kw name="Set Variable" library="BuiltIn">
+<var>${has_precondition_passed}</var>
+<arg>${True}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230613 15:36:31.831" level="INFO">${has_precondition_passed} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.828" endtime="20230613 15:36:31.831"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:31.827" endtime="20230613 15:36:31.832"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:31.826" endtime="20230613 15:36:31.833"/>
+</if>
+<return>
+<value>${has_precondition_passed}</value>
+<status status="PASS" starttime="20230613 15:36:31.834" endtime="20230613 15:36:31.835"/>
+</return>
+<msg timestamp="20230613 15:36:31.838" level="INFO">${has_precondition_passed} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.684" endtime="20230613 15:36:31.839"/>
+</kw>
+<if>
+<branch type="IF" condition="${has_precondition_passed} == ${False}">
+<kw name="custom-fail" library="Exception">
+<arg>${LOGIN_PAGE_NOT_LOADED_ERROR}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:31.844" endtime="20230613 15:36:31.845"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:31.842" endtime="20230613 15:36:31.846"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:31.840" endtime="20230613 15:36:31.847"/>
+</if>
+<try>
+<branch type="TRY">
+<kw name="set-password-secret" library="InputTextComponent">
+<arg>id=password</arg>
+<arg>${global-retry-count}</arg>
+<tag>component</tag>
+<doc>Updates Password Field</doc>
+<kw name="fail-if-not-attached" library="Validation">
+<arg>${selector}</arg>
+<tag>validation</tag>
+<doc>Throws error if the element is not attanched to the DOM</doc>
+<kw name="is-attached" library="ComponentStatus">
+<var>${is-attached}</var>
+<arg>${selector}</arg>
+<tag>component</tag>
+<doc>checks whether the given selector is attached to the DOM</doc>
+<kw name="get-element-state" library="ComponentStatus">
+<var>${result}</var>
+<arg>${selector}</arg>
+<arg>${ELEMENT_STATE_ATTACHED}</arg>
+<tag>component</tag>
+<doc>Used to get the element state</doc>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${result}</var>
+<arg>Wait For Elements State</arg>
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait For Elements State" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<msg timestamp="20230613 15:36:31.882" level="INFO">Waited for Element with selector id=password at state attached</msg>
+<status status="PASS" starttime="20230613 15:36:31.867" endtime="20230613 15:36:31.883"/>
+</kw>
+<msg timestamp="20230613 15:36:31.885" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.864" endtime="20230613 15:36:31.885"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:31.887" endtime="20230613 15:36:31.888"/>
+</return>
+<msg timestamp="20230613 15:36:31.891" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.861" endtime="20230613 15:36:31.891"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:31.892" endtime="20230613 15:36:31.894"/>
+</return>
+<msg timestamp="20230613 15:36:31.896" level="INFO">${is-attached} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.858" endtime="20230613 15:36:31.896"/>
+</kw>
+<if>
+<branch type="IF" condition="${is-attached} == ${False}">
+<kw name="Fail" library="BuiltIn">
+<arg>${ELEMENT_NOT_ATTACHED}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:31.901" endtime="20230613 15:36:31.902"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:31.898" endtime="20230613 15:36:31.903"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:31.897" endtime="20230613 15:36:31.905"/>
+</if>
+<status status="PASS" starttime="20230613 15:36:31.855" endtime="20230613 15:36:31.906"/>
+</kw>
+<kw name="fail-if-not-editable" library="Validation">
+<arg>${selector}</arg>
+<tag>validation</tag>
+<doc>Throws error if the element is not editable</doc>
+<kw name="is-editable" library="ComponentStatus">
+<var>${is-editable}</var>
+<arg>${selector}</arg>
+<tag>component</tag>
+<doc>checks whether the given selector is editable</doc>
+<kw name="get-element-state" library="ComponentStatus">
+<var>${result}</var>
+<arg>${selector}</arg>
+<arg>${ELEMENT_STATE_EDITABLE}</arg>
+<tag>component</tag>
+<doc>Used to get the element state</doc>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${result}</var>
+<arg>Wait For Elements State</arg>
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait For Elements State" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<msg timestamp="20230613 15:36:32.054" level="INFO">Waited for Element with selector id=password at state editable</msg>
+<status status="PASS" starttime="20230613 15:36:31.927" endtime="20230613 15:36:32.055"/>
+</kw>
+<msg timestamp="20230613 15:36:32.056" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.924" endtime="20230613 15:36:32.057"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:32.058" endtime="20230613 15:36:32.060"/>
+</return>
+<msg timestamp="20230613 15:36:32.061" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.917" endtime="20230613 15:36:32.062"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:32.063" endtime="20230613 15:36:32.064"/>
+</return>
+<msg timestamp="20230613 15:36:32.066" level="INFO">${is-editable} = True</msg>
+<status status="PASS" starttime="20230613 15:36:31.911" endtime="20230613 15:36:32.067"/>
+</kw>
+<if>
+<branch type="IF" condition="${is-editable} == ${False}">
+<kw name="Fail" library="BuiltIn">
+<arg>${ELEMENT_NOT_EDITABLE}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:32.072" endtime="20230613 15:36:32.073"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:32.069" endtime="20230613 15:36:32.074"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:32.068" endtime="20230613 15:36:32.075"/>
+</if>
+<status status="PASS" starttime="20230613 15:36:31.907" endtime="20230613 15:36:32.076"/>
+</kw>
+<try>
+<branch type="TRY">
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>${retry_count}</arg>
+<arg>1s</arg>
+<arg>fill-password-and-validate-post-condition</arg>
+<arg>${selector}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="fill-password-and-validate-post-condition" library="InputTextComponent">
+<arg>${selector}</arg>
+<tag>robot:private</tag>
+<tag>secret</tag>
+<doc>Updates the Field value and checks for post condition
+And retries if the retry value is provided</doc>
+<kw name="Fill Secret" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>http://a3F@ns7/#Z</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Fills the given secret from ``variable_name`` into the
+text field found by ``selector``.</doc>
+<msg timestamp="20230613 15:36:32.100" level="WARN">Direct assignment of values as 'secret' is deprecated. Use special variable syntax to resolve variable. Example $var instead of ${var}.</msg>
+<status status="PASS" starttime="20230613 15:36:32.087" endtime="20230613 15:36:32.221"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:32.083" endtime="20230613 15:36:32.224"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:32.079" endtime="20230613 15:36:32.226"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:32.078" endtime="20230613 15:36:32.227"/>
+</branch>
+<branch type="EXCEPT" variable="${err_msg}">
+<kw name="get-error-message-from-retry-exception-template" library="Exception">
+<var>${actual_err_msg}</var>
+<arg>${err_msg}</arg>
+<tag>exception</tag>
+<doc>Method used to get the actual error message from string(Error msg from retry)</doc>
+<status status="NOT RUN" starttime="20230613 15:36:32.236" endtime="20230613 15:36:32.238"/>
+</kw>
+<kw name="custom-fail" library="Exception">
+<arg>${actual_err_msg}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:32.241" endtime="20230613 15:36:32.244"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:32.233" endtime="20230613 15:36:32.245"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:32.077" endtime="20230613 15:36:32.247"/>
+</try>
+<status status="PASS" starttime="20230613 15:36:31.850" endtime="20230613 15:36:32.249"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:31.848" endtime="20230613 15:36:32.251"/>
+</branch>
+<branch type="EXCEPT">
+<pattern>${ELEMENT_NOT_ATTACHED}</pattern>
+<kw name="custom-fail" library="Exception">
+<arg>${PASSWORD_FIELD_NOT_ATTACHED}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:32.259" endtime="20230613 15:36:32.261"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:32.253" endtime="20230613 15:36:32.263"/>
+</branch>
+<branch type="EXCEPT">
+<pattern>${ELEMENT_NOT_EDITABLE}</pattern>
+<kw name="custom-fail" library="Exception">
+<arg>${PASSWORD_FIELD_NOT_EDITABLE}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:32.268" endtime="20230613 15:36:32.270"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:32.265" endtime="20230613 15:36:32.272"/>
+</branch>
+<branch type="EXCEPT">
+<pattern>${POSTCONDITION_FAILED}</pattern>
+<kw name="custom-fail" library="Exception">
+<arg>${PASSWORD_FIELD_VALUE_NOT_POPULATED}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:32.278" endtime="20230613 15:36:32.280"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:32.274" endtime="20230613 15:36:32.282"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:31.848" endtime="20230613 15:36:32.284"/>
+</try>
+<status status="PASS" starttime="20230613 15:36:31.678" endtime="20230613 15:36:32.286"/>
+</kw>
+<kw name="perform-login" library="LoginPage">
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230613 15:36:33.326" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20230613 15:36:32.320" endtime="20230613 15:36:33.327"/>
+</kw>
+<kw name="check-page-title-and-data-form-name" library="CommonUtilities">
+<var>${has_precondition_passed}</var>
+<arg>xpath=${login_page_xpath}</arg>
+<arg>css=${login_page_css}</arg>
+<tag>function</tag>
+<doc>validates page title and data form name</doc>
+<kw name="Set Variable" library="BuiltIn">
+<var>${has_precondition_passed}</var>
+<arg>${False}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230613 15:36:33.337" level="INFO">${has_precondition_passed} = False</msg>
+<status status="PASS" starttime="20230613 15:36:33.334" endtime="20230613 15:36:33.338"/>
+</kw>
+<kw name="Get Element" library="RPA.Browser.Playwright">
+<var>${login_form_name}</var>
+<arg>${data_form}</arg>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns a reference to a Playwright [https://playwright.dev/docs/api/class-locator|Locator].</doc>
+<msg timestamp="20230613 15:36:33.361" level="INFO">Locator found successfully.</msg>
+<msg timestamp="20230613 15:36:33.363" level="INFO">${login_form_name} = element=28e795e7-91b8-410a-9936-f2b7c6c6ea7f</msg>
+<status status="PASS" starttime="20230613 15:36:33.341" endtime="20230613 15:36:33.363"/>
+</kw>
+<kw name="Get Attribute" library="RPA.Browser.Playwright">
+<var>${form_name}</var>
+<arg>${login_form_name}</arg>
+<arg>id</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the HTML ``attribute`` of the element found by ``selector``.</doc>
+<msg timestamp="20230613 15:36:33.400" level="INFO">${form_name} = loginform</msg>
+<status status="PASS" starttime="20230613 15:36:33.365" endtime="20230613 15:36:33.401"/>
+</kw>
+<kw name="Get Element" library="RPA.Browser.Playwright">
+<var>${title_element}</var>
+<arg>${title}</arg>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns a reference to a Playwright [https://playwright.dev/docs/api/class-locator|Locator].</doc>
+<msg timestamp="20230613 15:36:33.423" level="INFO">Locator found successfully.</msg>
+<msg timestamp="20230613 15:36:33.425" level="INFO">${title_element} = element=90e960bc-0539-4383-a017-f70454782bc5</msg>
+<status status="PASS" starttime="20230613 15:36:33.404" endtime="20230613 15:36:33.425"/>
+</kw>
+<kw name="Get Property" library="RPA.Browser.Playwright">
+<var>${page_title}</var>
+<arg>${title_element}</arg>
+<arg>innerHTML</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the ``property`` of the element found by ``selector``.</doc>
+<msg timestamp="20230613 15:36:33.459" level="INFO">${page_title} = Kinnser Software</msg>
+<status status="PASS" starttime="20230613 15:36:33.427" endtime="20230613 15:36:33.460"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${form_name}&quot; == &quot;loginform&quot; and &quot;${page_title}&quot; == &quot;Kinnser Software&quot;">
+<kw name="Set Variable" library="BuiltIn">
+<var>${has_precondition_passed}</var>
+<arg>${True}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230613 15:36:33.468" level="INFO">${has_precondition_passed} = True</msg>
+<status status="PASS" starttime="20230613 15:36:33.464" endtime="20230613 15:36:33.469"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:33.463" endtime="20230613 15:36:33.470"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:33.461" endtime="20230613 15:36:33.472"/>
+</if>
+<return>
+<value>${has_precondition_passed}</value>
+<status status="PASS" starttime="20230613 15:36:33.472" endtime="20230613 15:36:33.474"/>
+</return>
+<msg timestamp="20230613 15:36:33.477" level="INFO">${has_precondition_passed} = True</msg>
+<status status="PASS" starttime="20230613 15:36:33.329" endtime="20230613 15:36:33.478"/>
+</kw>
+<if>
+<branch type="IF" condition="${has_precondition_passed} == ${False}">
+<kw name="custom-fail" library="Exception">
+<arg>${LOGIN_PAGE_NOT_LOADED_ERROR}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:33.484" endtime="20230613 15:36:33.486"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:33.481" endtime="20230613 15:36:33.487"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:33.479" endtime="20230613 15:36:33.488"/>
+</if>
+<try>
+<branch type="TRY">
+<kw name="Handle Future Dialogs" library="RPA.Browser.Playwright">
+<arg>action=accept</arg>
+<tag>PageContent</tag>
+<doc>Handle next dialog on page with ``action``.</doc>
+<status status="PASS" starttime="20230613 15:36:33.492" endtime="20230613 15:36:33.502"/>
+</kw>
+<kw name="left-click" library="ButtonComponent">
+<arg>xpath=//button[@id='login_btn']</arg>
+<tag>component</tag>
+<doc>Performs left click operation on button</doc>
+<kw name="fail-if-not-attached" library="Validation">
+<arg>${selector}</arg>
+<tag>validation</tag>
+<doc>Throws error if the element is not attanched to the DOM</doc>
+<kw name="is-attached" library="ComponentStatus">
+<var>${is-attached}</var>
+<arg>${selector}</arg>
+<tag>component</tag>
+<doc>checks whether the given selector is attached to the DOM</doc>
+<kw name="get-element-state" library="ComponentStatus">
+<var>${result}</var>
+<arg>${selector}</arg>
+<arg>${ELEMENT_STATE_ATTACHED}</arg>
+<tag>component</tag>
+<doc>Used to get the element state</doc>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${result}</var>
+<arg>Wait For Elements State</arg>
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait For Elements State" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<msg timestamp="20230613 15:36:33.625" level="INFO">Waited for Element with selector xpath=//button[@id='login_btn'] at state attached</msg>
+<status status="PASS" starttime="20230613 15:36:33.530" endtime="20230613 15:36:33.627"/>
+</kw>
+<msg timestamp="20230613 15:36:33.629" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:33.527" endtime="20230613 15:36:33.630"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:33.631" endtime="20230613 15:36:33.633"/>
+</return>
+<msg timestamp="20230613 15:36:33.636" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:33.522" endtime="20230613 15:36:33.637"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:33.639" endtime="20230613 15:36:33.641"/>
+</return>
+<msg timestamp="20230613 15:36:33.646" level="INFO">${is-attached} = True</msg>
+<status status="PASS" starttime="20230613 15:36:33.517" endtime="20230613 15:36:33.647"/>
+</kw>
+<if>
+<branch type="IF" condition="${is-attached} == ${False}">
+<kw name="Fail" library="BuiltIn">
+<arg>${ELEMENT_NOT_ATTACHED}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:33.654" endtime="20230613 15:36:33.656"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:33.651" endtime="20230613 15:36:33.658"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:33.649" endtime="20230613 15:36:33.661"/>
+</if>
+<status status="PASS" starttime="20230613 15:36:33.510" endtime="20230613 15:36:33.663"/>
+</kw>
+<kw name="fail-if-not-enabled" library="Validation">
+<arg>${selector}</arg>
+<tag>validation</tag>
+<doc>Throws error if the element is not enabled</doc>
+<kw name="is-enabled" library="ComponentStatus">
+<var>${is-enabled}</var>
+<arg>${selector}</arg>
+<tag>component</tag>
+<doc>checks whether the given selector is enabled</doc>
+<kw name="get-element-state" library="ComponentStatus">
+<var>${result}</var>
+<arg>${selector}</arg>
+<arg>${ELEMENT_STATE_ENABLED}</arg>
+<tag>component</tag>
+<doc>Used to get the element state</doc>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${result}</var>
+<arg>Wait For Elements State</arg>
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait For Elements State" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<msg timestamp="20230613 15:36:33.752" level="INFO">Waited for Element with selector xpath=//button[@id='login_btn'] at state enabled</msg>
+<status status="PASS" starttime="20230613 15:36:33.698" endtime="20230613 15:36:33.753"/>
+</kw>
+<msg timestamp="20230613 15:36:33.756" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:33.691" endtime="20230613 15:36:33.757"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:33.759" endtime="20230613 15:36:33.762"/>
+</return>
+<msg timestamp="20230613 15:36:33.766" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:33.680" endtime="20230613 15:36:33.766"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:33.767" endtime="20230613 15:36:33.769"/>
+</return>
+<msg timestamp="20230613 15:36:33.773" level="INFO">${is-enabled} = True</msg>
+<status status="PASS" starttime="20230613 15:36:33.672" endtime="20230613 15:36:33.773"/>
+</kw>
+<if>
+<branch type="IF" condition="${is-enabled} == ${False}">
+<kw name="Fail" library="BuiltIn">
+<arg>${ELEMENT_NOT_ENABLED}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:33.780" endtime="20230613 15:36:33.782"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:33.778" endtime="20230613 15:36:33.784"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:33.776" endtime="20230613 15:36:33.786"/>
+</if>
+<status status="PASS" starttime="20230613 15:36:33.666" endtime="20230613 15:36:33.788"/>
+</kw>
+<kw name="Scroll To Element" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>This method waits for actionability checks, then tries to scroll element into view,
+unless it is completely visible.</doc>
+<status status="PASS" starttime="20230613 15:36:33.790" endtime="20230613 15:36:33.847"/>
+</kw>
+<kw name="Click" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>left</arg>
+<arg>1</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" starttime="20230613 15:36:33.850" endtime="20230613 15:36:34.019"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:33.505" endtime="20230613 15:36:34.022"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:33.490" endtime="20230613 15:36:34.023"/>
+</branch>
+<branch type="EXCEPT">
+<pattern>${ELEMENT_NOT_ATTACHED}</pattern>
+<kw name="custom-fail" library="Exception">
+<arg>${LOGIN_BUTTON_NOT_ATTACHED}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:34.030" endtime="20230613 15:36:34.033"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:34.025" endtime="20230613 15:36:34.035"/>
+</branch>
+<branch type="EXCEPT">
+<pattern>${ELEMENT_NOT_ENABLED}</pattern>
+<kw name="custom-fail" library="Exception">
+<arg>${LOGIN_BUTTON_NOT_ENABLED}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:34.039" endtime="20230613 15:36:34.041"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:34.037" endtime="20230613 15:36:34.043"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:33.489" endtime="20230613 15:36:34.045"/>
+</try>
+<kw name="Set Variable" library="BuiltIn">
+<var>${error-message-selector}</var>
+<arg>xpath=//div[@id="warning-alerts"]/div/div[@role="status"]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230613 15:36:34.051" level="INFO">${error-message-selector} = xpath=//div[@id="warning-alerts"]/div/div[@role="status"]</msg>
+<status status="PASS" starttime="20230613 15:36:34.047" endtime="20230613 15:36:34.053"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230613 15:36:36.059" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230613 15:36:34.055" endtime="20230613 15:36:36.060"/>
+</kw>
+<kw name="is-attached" library="ComponentStatus">
+<var>${is-attached}</var>
+<arg>${error-message-selector}</arg>
+<tag>component</tag>
+<doc>checks whether the given selector is attached to the DOM</doc>
+<kw name="get-element-state" library="ComponentStatus">
+<var>${result}</var>
+<arg>${selector}</arg>
+<arg>${ELEMENT_STATE_ATTACHED}</arg>
+<tag>component</tag>
+<doc>Used to get the element state</doc>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${result}</var>
+<arg>Wait For Elements State</arg>
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait For Elements State" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<msg timestamp="20230613 15:36:46.399" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/fail-screenshot-1.png"&gt;&lt;img src="browser/screenshot/fail-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20230613 15:36:46.408" level="FAIL">TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
+=========================== logs ===========================
+waiting for locator('xpath=//div[@id="warning-alerts"]/div/div[@role="status"]')
+============================================================
+Tip: Use "Set Browser Timeout" for increasing the timeout or double check your locator as the targeted element(s) couldn't be found.</msg>
+<status status="FAIL" starttime="20230613 15:36:36.074" endtime="20230613 15:36:46.420"/>
+</kw>
+<msg timestamp="20230613 15:36:46.423" level="INFO">${result} = False</msg>
+<status status="PASS" starttime="20230613 15:36:36.069" endtime="20230613 15:36:46.423"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:46.424" endtime="20230613 15:36:46.426"/>
+</return>
+<msg timestamp="20230613 15:36:46.428" level="INFO">${result} = False</msg>
+<status status="PASS" starttime="20230613 15:36:36.065" endtime="20230613 15:36:46.429"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:46.430" endtime="20230613 15:36:46.432"/>
+</return>
+<msg timestamp="20230613 15:36:46.438" level="INFO">${is-attached} = False</msg>
+<status status="PASS" starttime="20230613 15:36:36.062" endtime="20230613 15:36:46.439"/>
+</kw>
+<if>
+<branch type="IF" condition="${is-attached} == ${True}">
+<kw name="Get Element" library="RPA.Browser.Playwright">
+<var>${error-message-selector-element}</var>
+<arg>${error-message-selector}</arg>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns a reference to a Playwright [https://playwright.dev/docs/api/class-locator|Locator].</doc>
+<status status="NOT RUN" starttime="20230613 15:36:46.448" endtime="20230613 15:36:46.450"/>
+</kw>
+<kw name="Get Property" library="RPA.Browser.Playwright">
+<var>${login-error-message}</var>
+<arg>${error-message-selector-element}</arg>
+<arg>innerHTML</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the ``property`` of the element found by ``selector``.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:46.458" endtime="20230613 15:36:46.461"/>
+</kw>
+<kw name="check-string-contains" library="CommonUtilities">
+<var>${is_invalid_credential}</var>
+<arg>${login-error-message}</arg>
+<arg>You have entered an invalid username or password</arg>
+<tag>function</tag>
+<doc>Method used to check if string1 contains string2</doc>
+<status status="NOT RUN" starttime="20230613 15:36:46.464" endtime="20230613 15:36:46.467"/>
+</kw>
+<if>
+<branch type="IF" condition="${is_invalid_credential}">
+<kw name="custom-fail" library="Exception">
+<arg>${INVALID_CREDENTIALS_ERROR}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:46.472" endtime="20230613 15:36:46.474"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:46.470" endtime="20230613 15:36:46.475"/>
+</branch>
+<status status="NOT RUN" starttime="20230613 15:36:46.469" endtime="20230613 15:36:46.476"/>
+</if>
+<status status="NOT RUN" starttime="20230613 15:36:46.443" endtime="20230613 15:36:46.477"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:46.440" endtime="20230613 15:36:46.478"/>
+</if>
+<kw name="is-visible" library="ComponentStatus">
+<var>${login_postcondition_flag}</var>
+<arg>xpath=//tbody//div[@class="menuBar"]</arg>
+<tag>component</tag>
+<doc>checks whether the given selector is visible</doc>
+<kw name="get-element-state" library="ComponentStatus">
+<var>${result}</var>
+<arg>${selector}</arg>
+<arg>${ELEMENT_STATE_VISIBLE}</arg>
+<tag>component</tag>
+<doc>Used to get the element state</doc>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${result}</var>
+<arg>Wait For Elements State</arg>
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait For Elements State" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<msg timestamp="20230613 15:36:46.522" level="INFO">Waited for Element with selector xpath=//tbody//div[@class="menuBar"] at state visible</msg>
+<status status="PASS" starttime="20230613 15:36:46.495" endtime="20230613 15:36:46.525"/>
+</kw>
+<msg timestamp="20230613 15:36:46.528" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:46.491" endtime="20230613 15:36:46.529"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:46.531" endtime="20230613 15:36:46.534"/>
+</return>
+<msg timestamp="20230613 15:36:46.539" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:46.486" endtime="20230613 15:36:46.539"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:46.542" endtime="20230613 15:36:46.545"/>
+</return>
+<msg timestamp="20230613 15:36:46.554" level="INFO">${login_postcondition_flag} = True</msg>
+<status status="PASS" starttime="20230613 15:36:46.481" endtime="20230613 15:36:46.555"/>
+</kw>
+<if>
+<branch type="IF" condition="${login_postcondition_flag} == ${False}">
+<kw name="check-page-title-and-data-form-name" library="CommonUtilities">
+<var>${has_precondition_passed}</var>
+<arg>xpath=${login_page_xpath}</arg>
+<arg>css=${login_page_css}</arg>
+<tag>function</tag>
+<doc>validates page title and data form name</doc>
+<status status="NOT RUN" starttime="20230613 15:36:46.563" endtime="20230613 15:36:46.565"/>
+</kw>
+<if>
+<branch type="IF" condition="${has_precondition_passed} == ${False}">
+<kw name="Log To Console" library="BuiltIn">
+<arg>&lt;== Found blank page after clicking the login button, Reloading the page ==&gt;</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:46.570" endtime="20230613 15:36:46.572"/>
+</kw>
+<kw name="Reload" library="RPA.Browser.Playwright">
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Reloads current active page.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:46.575" endtime="20230613 15:36:46.578"/>
+</kw>
+<kw name="is-visible" library="ComponentStatus">
+<var>${login_postcondition_flag}</var>
+<arg>xpath=//tbody//div[@class="menuBar"]</arg>
+<tag>component</tag>
+<doc>checks whether the given selector is visible</doc>
+<status status="NOT RUN" starttime="20230613 15:36:46.581" endtime="20230613 15:36:46.583"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:46.568" endtime="20230613 15:36:46.584"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log To Console" library="BuiltIn">
+<arg>&lt;== After clicking the login button, still in the login page ==&gt;</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:46.589" endtime="20230613 15:36:46.591"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:46.586" endtime="20230613 15:36:46.593"/>
+</branch>
+<status status="NOT RUN" starttime="20230613 15:36:46.567" endtime="20230613 15:36:46.595"/>
+</if>
+<kw name="custom-fail" library="Exception">
+<arg>${HOME_PAGE_NOT_FOUND_ERROR}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:46.597" endtime="20230613 15:36:46.599"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:46.559" endtime="20230613 15:36:46.601"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:46.557" endtime="20230613 15:36:46.604"/>
+</if>
+<status status="PASS" starttime="20230613 15:36:32.316" endtime="20230613 15:36:46.607"/>
+</kw>
+<kw name="click-logout">
+<doc>Checks and clicks logout button</doc>
+<try>
+<branch type="TRY">
+<kw name="Set Variable" library="BuiltIn">
+<var>${logout-selector}</var>
+<arg>xpath=//div[@class="right"]//a[@href]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230613 15:36:46.708" level="INFO">${logout-selector} = xpath=//div[@class="right"]//a[@href]</msg>
+<status status="PASS" starttime="20230613 15:36:46.704" endtime="20230613 15:36:46.708"/>
+</kw>
+<kw name="left-click" library="ButtonComponent">
+<arg>${logout-selector}</arg>
+<tag>component</tag>
+<doc>Performs left click operation on button</doc>
+<kw name="fail-if-not-attached" library="Validation">
+<arg>${selector}</arg>
+<tag>validation</tag>
+<doc>Throws error if the element is not attanched to the DOM</doc>
+<kw name="is-attached" library="ComponentStatus">
+<var>${is-attached}</var>
+<arg>${selector}</arg>
+<tag>component</tag>
+<doc>checks whether the given selector is attached to the DOM</doc>
+<kw name="get-element-state" library="ComponentStatus">
+<var>${result}</var>
+<arg>${selector}</arg>
+<arg>${ELEMENT_STATE_ATTACHED}</arg>
+<tag>component</tag>
+<doc>Used to get the element state</doc>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${result}</var>
+<arg>Wait For Elements State</arg>
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait For Elements State" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<msg timestamp="20230613 15:36:46.800" level="INFO">Waited for Element with selector xpath=//div[@class="right"]//a[@href] at state attached</msg>
+<status status="PASS" starttime="20230613 15:36:46.764" endtime="20230613 15:36:46.803"/>
+</kw>
+<msg timestamp="20230613 15:36:46.805" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:46.754" endtime="20230613 15:36:46.806"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:46.808" endtime="20230613 15:36:46.810"/>
+</return>
+<msg timestamp="20230613 15:36:46.817" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:46.742" endtime="20230613 15:36:46.821"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:46.825" endtime="20230613 15:36:46.828"/>
+</return>
+<msg timestamp="20230613 15:36:46.834" level="INFO">${is-attached} = True</msg>
+<status status="PASS" starttime="20230613 15:36:46.734" endtime="20230613 15:36:46.835"/>
+</kw>
+<if>
+<branch type="IF" condition="${is-attached} == ${False}">
+<kw name="Fail" library="BuiltIn">
+<arg>${ELEMENT_NOT_ATTACHED}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:46.850" endtime="20230613 15:36:46.852"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:46.842" endtime="20230613 15:36:46.855"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:46.837" endtime="20230613 15:36:46.857"/>
+</if>
+<status status="PASS" starttime="20230613 15:36:46.722" endtime="20230613 15:36:46.860"/>
+</kw>
+<kw name="fail-if-not-enabled" library="Validation">
+<arg>${selector}</arg>
+<tag>validation</tag>
+<doc>Throws error if the element is not enabled</doc>
+<kw name="is-enabled" library="ComponentStatus">
+<var>${is-enabled}</var>
+<arg>${selector}</arg>
+<tag>component</tag>
+<doc>checks whether the given selector is enabled</doc>
+<kw name="get-element-state" library="ComponentStatus">
+<var>${result}</var>
+<arg>${selector}</arg>
+<arg>${ELEMENT_STATE_ENABLED}</arg>
+<tag>component</tag>
+<doc>Used to get the element state</doc>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${result}</var>
+<arg>Wait For Elements State</arg>
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Wait For Elements State" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>${state}</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<msg timestamp="20230613 15:36:46.967" level="INFO">Waited for Element with selector xpath=//div[@class="right"]//a[@href] at state enabled</msg>
+<status status="PASS" starttime="20230613 15:36:46.892" endtime="20230613 15:36:46.969"/>
+</kw>
+<msg timestamp="20230613 15:36:46.971" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:46.883" endtime="20230613 15:36:46.973"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:46.975" endtime="20230613 15:36:46.976"/>
+</return>
+<msg timestamp="20230613 15:36:46.982" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20230613 15:36:46.877" endtime="20230613 15:36:46.983"/>
+</kw>
+<return>
+<value>${result}</value>
+<status status="PASS" starttime="20230613 15:36:46.986" endtime="20230613 15:36:46.988"/>
+</return>
+<msg timestamp="20230613 15:36:46.993" level="INFO">${is-enabled} = True</msg>
+<status status="PASS" starttime="20230613 15:36:46.871" endtime="20230613 15:36:46.994"/>
+</kw>
+<if>
+<branch type="IF" condition="${is-enabled} == ${False}">
+<kw name="Fail" library="BuiltIn">
+<arg>${ELEMENT_NOT_ENABLED}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20230613 15:36:47.001" endtime="20230613 15:36:47.003"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:46.999" endtime="20230613 15:36:47.004"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:46.997" endtime="20230613 15:36:47.007"/>
+</if>
+<status status="PASS" starttime="20230613 15:36:46.863" endtime="20230613 15:36:47.008"/>
+</kw>
+<kw name="Scroll To Element" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>This method waits for actionability checks, then tries to scroll element into view,
+unless it is completely visible.</doc>
+<status status="PASS" starttime="20230613 15:36:47.011" endtime="20230613 15:36:47.080"/>
+</kw>
+<kw name="Click" library="RPA.Browser.Playwright">
+<arg>${selector}</arg>
+<arg>left</arg>
+<arg>1</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" starttime="20230613 15:36:47.081" endtime="20230613 15:36:47.720"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:46.715" endtime="20230613 15:36:47.723"/>
+</kw>
+<kw name="check-page-title-and-data-form-name" library="CommonUtilities">
+<arg>//title</arg>
+<arg>form[id="loginform"]</arg>
+<tag>function</tag>
+<doc>validates page title and data form name</doc>
+<kw name="Set Variable" library="BuiltIn">
+<var>${has_precondition_passed}</var>
+<arg>${False}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230613 15:36:47.749" level="INFO">${has_precondition_passed} = False</msg>
+<status status="PASS" starttime="20230613 15:36:47.732" endtime="20230613 15:36:47.750"/>
+</kw>
+<kw name="Get Element" library="RPA.Browser.Playwright">
+<var>${login_form_name}</var>
+<arg>${data_form}</arg>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns a reference to a Playwright [https://playwright.dev/docs/api/class-locator|Locator].</doc>
+<msg timestamp="20230613 15:36:48.243" level="INFO">Locator found successfully.</msg>
+<msg timestamp="20230613 15:36:48.244" level="INFO">${login_form_name} = element=ef4e1e97-fe35-4ecf-a660-7fed3ca9eaa0</msg>
+<status status="PASS" starttime="20230613 15:36:47.753" endtime="20230613 15:36:48.245"/>
+</kw>
+<kw name="Get Attribute" library="RPA.Browser.Playwright">
+<var>${form_name}</var>
+<arg>${login_form_name}</arg>
+<arg>id</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the HTML ``attribute`` of the element found by ``selector``.</doc>
+<msg timestamp="20230613 15:36:48.286" level="INFO">${form_name} = loginform</msg>
+<status status="PASS" starttime="20230613 15:36:48.248" endtime="20230613 15:36:48.286"/>
+</kw>
+<kw name="Get Element" library="RPA.Browser.Playwright">
+<var>${title_element}</var>
+<arg>${title}</arg>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns a reference to a Playwright [https://playwright.dev/docs/api/class-locator|Locator].</doc>
+<msg timestamp="20230613 15:36:48.309" level="INFO">Locator found successfully.</msg>
+<msg timestamp="20230613 15:36:48.310" level="INFO">${title_element} = element=9d4b8155-7480-4285-ab10-8f8597d1d194</msg>
+<status status="PASS" starttime="20230613 15:36:48.290" endtime="20230613 15:36:48.311"/>
+</kw>
+<kw name="Get Property" library="RPA.Browser.Playwright">
+<var>${page_title}</var>
+<arg>${title_element}</arg>
+<arg>innerHTML</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the ``property`` of the element found by ``selector``.</doc>
+<msg timestamp="20230613 15:36:48.334" level="INFO">${page_title} = Kinnser Software</msg>
+<status status="PASS" starttime="20230613 15:36:48.313" endtime="20230613 15:36:48.335"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${form_name}&quot; == &quot;loginform&quot; and &quot;${page_title}&quot; == &quot;Kinnser Software&quot;">
+<kw name="Set Variable" library="BuiltIn">
+<var>${has_precondition_passed}</var>
+<arg>${True}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230613 15:36:48.345" level="INFO">${has_precondition_passed} = True</msg>
+<status status="PASS" starttime="20230613 15:36:48.342" endtime="20230613 15:36:48.345"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:48.339" endtime="20230613 15:36:48.346"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:48.337" endtime="20230613 15:36:48.348"/>
+</if>
+<return>
+<value>${has_precondition_passed}</value>
+<status status="PASS" starttime="20230613 15:36:48.349" endtime="20230613 15:36:48.351"/>
+</return>
+<status status="PASS" starttime="20230613 15:36:47.726" endtime="20230613 15:36:48.354"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:46.700" endtime="20230613 15:36:48.356"/>
+</branch>
+<branch type="EXCEPT">
+<pattern>${ELEMENT_NOT_ATTACHED}</pattern>
+<kw name="custom-fail" library="Exception">
+<arg>${DEVERO_BUSINESS_LOGOUT_BUTTON_NOT_ATTACHED}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:48.360" endtime="20230613 15:36:48.362"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:48.357" endtime="20230613 15:36:48.363"/>
+</branch>
+<branch type="EXCEPT">
+<pattern>${ELEMENT_NOT_ENABLED}</pattern>
+<kw name="custom-fail" library="Exception">
+<arg>${DEVERO_BUSINESS_LOGOUT_BUTTON_NOT_ENABLED}</arg>
+<tag>exception</tag>
+<doc>wrapper over the builtin Fail keyword, to support additional operations during failure</doc>
+<status status="NOT RUN" starttime="20230613 15:36:48.367" endtime="20230613 15:36:48.369"/>
+</kw>
+<status status="NOT RUN" starttime="20230613 15:36:48.365" endtime="20230613 15:36:48.371"/>
+</branch>
+<status status="PASS" starttime="20230613 15:36:46.699" endtime="20230613 15:36:48.372"/>
+</try>
+<status status="PASS" starttime="20230613 15:36:46.695" endtime="20230613 15:36:48.374"/>
+</kw>
+<status status="PASS" starttime="20230613 15:36:28.052" endtime="20230613 15:36:48.450"/>
+</test>
+<status status="PASS" starttime="20230613 15:36:24.215" endtime="20230613 15:36:48.818"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Wellskyheader">Wellskyheader</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20230613 15:36:32.100" level="WARN">Direct assignment of values as 'secret' is deprecated. Use special variable syntax to resolve variable. Example $var instead of ${var}.</msg>
+</errors>
+</robot>

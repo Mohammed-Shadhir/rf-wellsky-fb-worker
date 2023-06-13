@@ -6,8 +6,8 @@ Resource    ./robots/components/commons/Validation.robot
 *** Keywords ***
 left-click
     [Documentation]    Performs left click operation on button
+    [Tags]    component
     [Arguments]    ${selector}
-    [Tags]      component
 
     Validation.fail-if-not-attached    ${selector}
     Validation.fail-if-not-enabled    ${selector}
