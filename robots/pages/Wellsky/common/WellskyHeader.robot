@@ -6,21 +6,7 @@ Resource    ./robots/functions/commons/LogUtilities.robot
 Resource    ./robots/components/ButtonComponent.robot
 Resource    ./robots/pages/LoginPage.robot
 
-
-*** Tasks ***
-click_logout
-    CommonUtilities.launch
-    LoginPage.set-username    E5Bot1
-    LoginPage.set-password
-    LoginPage.perform-login
-    click-logout
-
-
 *** Keywords ***
-get-logout-selector
-    [Documentation]    fetches devero home page logout selector
-    RETURN    ${selectors}[e5][devero][homepage][logout]
-
 click-logout
     [Documentation]    Checks and clicks logout button
     TRY

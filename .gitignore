@@ -12,5 +12,9 @@ temp/
 .DS_Store
 *.pyc
 *.zip
+*.html
+*.txt
+*.xml
+*.png
 .~lock*
 */work-items-out/*

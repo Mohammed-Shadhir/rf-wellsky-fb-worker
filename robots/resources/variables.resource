@@ -42,6 +42,8 @@ ${HOME_PAGE_NOT_FOUND}                              HOME_PAGE_NOT_FOUND
 ${MENU_BAR_NOT_FOUND}                               MENU_BAR_NOT_FOUND
 ${MENU_BUTTON_NOT_ATTACHED}                         MENU_BUTTON_NOT_ATTACHED
 ${MENU_BUTTON_NOT_ENABLED}                          MENU_BUTTON_NOT_ENABLED
+${SUB_MENU_BUTTON_NOT_ATTACHED}                         SUB_MENU_BUTTON_NOT_ATTACHED
+${SUB_MENU_BUTTON_NOT_ENABLED}                          SUB_MENU_BUTTON_NOT_ENABLED
 ## Common variables
 ${downloads}                                        downloads
 ${reportName}                                       reportName

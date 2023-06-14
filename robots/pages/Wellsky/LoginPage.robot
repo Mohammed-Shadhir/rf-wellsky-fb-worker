@@ -21,7 +21,7 @@ launch
 
 set-username
     [Arguments]    ${username}
-# checking for valid lnding page
+    # checking for valid lnding page
     ${is_valid_landing_page}=    CommonUtilities.check-page-title-and-data-form-name
     ...    xpath=${login_page_xpath}
     ...    css=${login_page_css}

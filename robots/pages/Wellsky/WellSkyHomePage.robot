@@ -8,8 +8,8 @@ Resource    ./robots/components/ButtonComponent.robot
 Resource    ./robots/components/commons/ComponentStatus.robot
 Resource    ./robots/resources/variables.resource
 *** Variables ***
-${tab_name}=    Go To
-${sub_tab_name}=    Billing Manager
+# ${tab_name}=    Go To
+# ${sub_tab_name}=    Billing Manager
 
 *** Keywords ***
 open-menu-item
@@ -19,11 +19,11 @@ open-menu-item
     IF    ${is-menu-attached} == ${False}
         Exception.custom-fail    ${MENU_BAR_NOT_FOUND}
     END
-    IF    ${TAB_NAME} == Search
-        search-Keyword    ${tab_name}    ${sub_tab_name}
-    ELSE
-       select-menu-dropdown    ${tab_name}    ${sub_tab_name} 
-    END
+    select-menu-dropdown    ${tab_name}    ${sub_tab_name}
+    # IF    ${tab_name} == Search
+    #     search-Keyword    ${tab_name}    ${sub_tab_name}
+    # ELSE
+    # END
 search-Keyword
     [Documentation]    This method is exclusive for the search function in the wellsky menu bar
     [Arguments]    ${tab}    ${keyword}
@@ -36,12 +36,18 @@ select-menu-dropdown
     END
     TRY
         ButtonComponent.left-click    xpath=//div[@class="menuBar"]/a[contains(@class, "menuButton") and text()="${tab}"]
-        
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${MENU_BUTTON_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_ENABLED}
         Exception.custom-fail    ${MENU_BUTTON_NOT_ENABLED}
-        
     END
-    
 
+    Sleep    2s
+    
+    TRY
+        ButtonComponent.left-click    xpath=//div[contains(@class, "menu")]//a[(@class="menuItem" or @class="menuitem") and . = "${sub_tab}"]
+    EXCEPT    ${ELEMENT_NOT_ATTACHED}
+        Exception.custom-fail    ${SUB_MENU_BUTTON_NOT_ATTACHED}
+    EXCEPT    ${ELEMENT_NOT_ENABLED}
+        Exception.custom-fail    ${SUB_MENU_BUTTON_NOT_ENABLED}
+    END
