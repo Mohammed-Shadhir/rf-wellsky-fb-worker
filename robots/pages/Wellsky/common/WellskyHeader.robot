@@ -15,7 +15,7 @@ click-logout
         ButtonComponent.left-click    ${logout-selector}
         CommonUtilities.check-page-title-and-data-form-name    //title    form[id="loginform"]
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
-        Exception.custom-fail    ${DEVERO_BUSINESS_LOGOUT_BUTTON_NOT_ATTACHED}
+        Exception.custom-fail    ${WELLSKY_BUSINESS_LOGOUT_BUTTON_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_ENABLED}
         Exception.custom-fail    ${DEVERO_BUSINESS_LOGOUT_BUTTON_NOT_ENABLED}
     END

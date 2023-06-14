@@ -1,10 +1,15 @@
 #The selector for the wellsky web application
 e5:
   wellsky:
+    header:
+        breadcrumb: id=breadcrumb
+        home-page: //img[@class="header-img" and @id="menuImg"]
     loginpage:
       title: //title
       loginform:
         username: id=username
         password: id=password
-        login-btn: id=loginButton
-        error-message: id=message
+        login-btn: //button[@id='login_btn']
+        error-message: //div[@id="warning-alerts"]/div/div[@role="status"]
+    homepage:
+      logout: //div[@class="right"]//a[@href]

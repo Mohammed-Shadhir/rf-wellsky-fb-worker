@@ -44,6 +44,9 @@ ${MENU_BUTTON_NOT_ATTACHED}                         MENU_BUTTON_NOT_ATTACHED
 ${MENU_BUTTON_NOT_ENABLED}                          MENU_BUTTON_NOT_ENABLED
 ${SUB_MENU_BUTTON_NOT_ATTACHED}                         SUB_MENU_BUTTON_NOT_ATTACHED
 ${SUB_MENU_BUTTON_NOT_ENABLED}                          SUB_MENU_BUTTON_NOT_ENABLED
+${WELLSKY_BUSINESS_LOGOUT_BUTTON_NOT_ATTACHED}      WELLSKY_BUSINESS_LOGOUT_BUTTON_NOT_ATTACHED
+${WELLSKY_BUSINESS_LOGOUT_BUTTON_NOT_ENABLED}       WELLSKY_BUSINESS_LOGOUT_BUTTON_NOT_ENABLED
+${FAILED_TO_LOGOUT}                                 FAILED_TO_LOGOUT
 ## Common variables
 ${downloads}                                        downloads
 ${reportName}                                       reportName
