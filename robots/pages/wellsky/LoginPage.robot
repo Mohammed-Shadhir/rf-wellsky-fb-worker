@@ -1,11 +1,12 @@
 *** Settings ***
 Library     RPA.Browser.Playwright
-Library    XML
+Library     XML
 Resource    ./robots/exceptions/Exception.robot
 Resource    ./robots/functions/commons/CommonUtilities.robot
 Resource    ./robots/components/InputTextComponent.robot
 Resource    ./robots/components/ButtonComponent.robot
 Resource    ./robots/components/commons/ComponentStatus.robot
+
 
 *** Variables ***
 ${login_page_xpath}=        //title
@@ -31,7 +32,7 @@ set-username
     TRY
         ${user-name-selector}=    get-loginform-selector    username
         Log To Console    ${user-name-selector}
-        InputTextComponent.set-value    ${user-name-selector}    ${username}    ${global-retry-count}    #id=username
+        InputTextComponent.set-value    ${user-name-selector}    ${username}    ${global-retry-count}    # id=username
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${USERNAME_FIELD_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_EDITABLE}
@@ -51,7 +52,7 @@ set-password
 
     TRY
         ${password-selector}=    get-loginform-selector    password
-        InputTextComponent.set-password-secret    ${password-selector}    ${global-retry-count}    #id=password
+        InputTextComponent.set-password-secret    ${password-selector}    ${global-retry-count}    # id=password
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${PASSWORD_FIELD_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_EDITABLE}
@@ -74,7 +75,7 @@ perform-login
     TRY
         ${login-button-selector}=    get-loginform-selector    login-btn
         Handle Future Dialogs    action=accept
-        ButtonComponent.left-click    ${login-button-selector}    #xpath=//button[@id='login_btn']
+        ButtonComponent.left-click    ${login-button-selector}    # xpath=//button[@id='login_btn']
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${LOGIN_BUTTON_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_ENABLED}

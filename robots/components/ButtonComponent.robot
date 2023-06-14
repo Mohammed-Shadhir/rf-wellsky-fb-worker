@@ -9,6 +9,7 @@ left-click
     [Tags]    component
     [Arguments]    ${selector}
 
+    Highlight Elements    ${selector}    2s
     Validation.fail-if-not-attached    ${selector}
     Validation.fail-if-not-enabled    ${selector}
     Scroll To Element    ${selector}

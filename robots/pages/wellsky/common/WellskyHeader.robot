@@ -6,6 +6,7 @@ Resource    ./robots/functions/commons/LogUtilities.robot
 Resource    ./robots/components/ButtonComponent.robot
 Resource    ./robots/pages/LoginPage.robot
 
+
 *** Keywords ***
 click-logout
     [Documentation]    Checks and clicks logout button
