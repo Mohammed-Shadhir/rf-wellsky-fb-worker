@@ -82,7 +82,7 @@ perform-login
     END
 
     ${error-message-selector}=    get-loginform-selector    error-message
-    Sleep    2s
+    Sleep    1s
     ${is-attached}=    ComponentStatus.is-attached    ${error-message-selector}
     IF    ${is-attached} == ${True}
         ${error-message-selector-element}=    RPA.Browser.Playwright.Get Element    ${error-message-selector}
