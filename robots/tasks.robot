@@ -1,4 +1,5 @@
 *** Settings ***
+Library     Config
 Resource    ./robots/functions/wellsky/WellSkyFunctions.robot
 
 *** Tasks ***
@@ -7,6 +8,10 @@ Start
 
 *** Keywords ***
 Init
+    load-selectors
     WellSkyFunctions.perform-login-process    E5bot1
     WellSkyFunctions.navigate-to-billing-manager
     
+load-selectors
+    ${selectors}=    Config.Initialize Selectors    ./yamls/selectors.yaml
+    Set Global Variable    ${selectors}

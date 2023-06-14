@@ -1,6 +1,5 @@
 *** Settings ***
 Library     RPA.Browser.Playwright
-Library    Config
 Library    XML
 Resource    ./robots/exceptions/Exception.robot
 Resource    ./robots/functions/commons/CommonUtilities.robot
@@ -15,9 +14,6 @@ ${global-retry-count}=      3
 
 
 *** Keywords ***
-load-selectors
-    ${selectors}=    Config.Initialize Selectors    ./yamls/selectors.yaml
-    Set Global Variable    ${selectors}
 launch
     New Browser    chromium    headless=False
     New Context    viewport={'width': 1280, 'height': 720}    acceptDownloads=True    ignoreHTTPSErrors=False
