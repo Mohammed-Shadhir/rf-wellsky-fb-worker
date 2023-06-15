@@ -20,3 +20,8 @@ e5:
           name: //div[@class="menuBar"]/a[contains(@class, "menuButton") and text()="Go To"]
           sub-tabs:
             Billing Manager: //div[contains(@class, "menu")]//a[(@class="menuItem" or @class="menuitem") and . = "Billing Manager"]
+        Search:
+          name: //div[@class="menuBar"]/a[contains(@class, "menuButton") and text()="Search"]
+          sub-tabs: 
+            search: //input[@id="KinnerMenuSearch"]
+            value: //a[@class="hotbox" and contains(., $VALUE$)]

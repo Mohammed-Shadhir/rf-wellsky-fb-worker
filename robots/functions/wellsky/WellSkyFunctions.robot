@@ -19,7 +19,7 @@ perform-login-process
 navigate-to-billing-manager
     [Documentation]    Clicks GOTO menu and Billing manager
     [Tags]    function
-    Navbar.open-menu-item    Go To    Billing Manager
+    Navbar.open-menu-item    Search    1194
 
 navigate-to-Eoe
     [Documentation]    Clicks EOE menu and Ready to send
