@@ -15,14 +15,21 @@ Resource    ./robots/resources/variables.resource
 
 
 *** Keywords ***
+get-nav-bar-selectors
+    [Documentation]    Gets selectors of particular tab
+    ${dictionary}=    Set Variable    ${selectors}[e5][wellsky][nav-bar]
+    RETURN    ${dictionary}
+
 open-menu-item
     [Documentation]    This is used to open the menu item in the wellsky home page. SUB_TAB_NAME is an optional argument.
     [Arguments]    ${tab_name}    ${sub_tab_name}=${None}
-    ${is-menu-attached}=    ComponentStatus.is-attached    xpath=//tbody//div[@class="menuBar"]
+    ${navbar_selectors}=    get-nav-bar-selectors
+    ${is-menu-attached}=    ComponentStatus.is-attached    ${navbar_selectors}[container]
+    ${navbar_tabs_selectors}=    Set Variable    ${navbar_selectors}[tabs][${tab_name}]
     IF    ${is-menu-attached} == ${False}
         Exception.custom-fail    ${MENU_BAR_NOT_FOUND}
     END
-    select-menu-dropdown    ${tab_name}    ${sub_tab_name}
+    select-menu-dropdown    ${navbar_tabs_selectors}[name]    ${navbar_tabs_selectors}[sub-tabs][${sub_tab_name}]
     # IF    ${tab_name} == Search
     #    search-Keyword    ${tab_name}    ${sub_tab_name}
     # ELSE
@@ -34,14 +41,10 @@ search-Keyword
 
 select-menu-dropdown
     [Documentation]    This method selects the tab and sub tab from the dropdown in wellsky
-    [Arguments]    ${tab}    ${sub_tab}
-    ${is-menu-attached}=    ComponentStatus.is-attached    xpath=//tbody//div[@class="menuBar"]
-    IF    ${is-menu-attached} == ${False}
-        Exception.custom-fail    ${MENU_BAR_NOT_FOUND}
-    END
+    [Arguments]    ${tab_selector}    ${sub_tab_selector}
+    Log To Console    ${tab_selector}, ${sub_tab_selector}
     TRY
-        ButtonComponent.left-click
-        ...    xpath=//div[@class="menuBar"]/a[contains(@class, "menuButton") and text()="${tab}"]
+        ButtonComponent.left-click    ${tab_selector}
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${MENU_BUTTON_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_ENABLED}
@@ -51,8 +54,7 @@ select-menu-dropdown
     Sleep    2s
 
     TRY
-        ButtonComponent.left-click
-        ...    xpath=//div[contains(@class, "menu")]//a[(@class="menuItem" or @class="menuitem") and . = "${sub_tab}"]
+        ButtonComponent.left-click    ${sub_tab_selector}
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${SUB_MENU_BUTTON_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_ENABLED}

@@ -42,3 +42,16 @@ open-claims-manager
     END
 
     # Post-condition
+    ${claims_manager_heading}=    Catenate    Claims Manager :    ${claim_name}
+    ${is_patient_section}=    CommonUtilities.compare-strings    ${section}    Patients
+    IF  ${is_patient_section} == ${True}
+        ${claims_manager_heading}=    Set Variable    Outstanding Patient Balances
+    END
+    
+    ${actual_claims_manager_heading}=    Get Property    //h1[@class="ng-binding"]    innerText
+    Log To Console    ${actual_claims_manager_heading}, ${claims_manager_heading}
+    ${is_heading_matches}=    CommonUtilities.compare-strings    ${claims_manager_heading}    ${actual_claims_manager_heading}
+    IF  ${is_heading_matches} == ${False}
+        Exception.custom-fail    ${POST_CONDITION_CLAIMS_MANAGER_PAGE_NOT_FOUND}
+    END
+    Log To Console    Postcondition passed

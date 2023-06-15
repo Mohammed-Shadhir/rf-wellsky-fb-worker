@@ -2,8 +2,8 @@
 e5:
   wellsky:
     header:
-        breadcrumb: id=breadcrumb
-        home-page: //img[@class="header-img" and @id="menuImg"]
+      breadcrumb: id=breadcrumb
+      home-page: //img[@class="header-img" and @id="menuImg"]
     loginpage:
       title: //title
       loginform:
@@ -13,3 +13,10 @@ e5:
         error-message: //div[@id="warning-alerts"]/div/div[@role="status"]
     homepage:
       logout: //div[@class="right"]//a[@href]
+    nav-bar:
+      container: //tbody//div[@class="menuBar"]
+      tabs:
+        Go To:
+          name: //div[@class="menuBar"]/a[contains(@class, "menuButton") and text()="Go To"]
+          sub-tabs:
+            Billing Manager: //div[contains(@class, "menu")]//a[(@class="menuItem" or @class="menuitem") and . = "Billing Manager"]

@@ -1,7 +1,7 @@
 *** Settings ***
 Library     RPA.Browser.Playwright
 Resource    ./robots/pages/wellsky/LoginPage.robot
-Resource    ./robots/pages/wellsky/HomePage.robot
+Resource    ./robots/pages/wellsky/common/Navbar.robot
 Resource    ./robots/pages/wellsky/BillingManagerPage.robot
 Resource    ./robots/functions/commons/CommonUtilities.robot
 
@@ -19,7 +19,7 @@ perform-login-process
 navigate-to-billing-manager
     [Documentation]    Clicks GOTO menu and Billing manager
     [Tags]    function
-    HomePage.open-menu-item    Go To    Billing Manager
+    Navbar.open-menu-item    Go To    Billing Manager
 
 navigate-to-Eoe
     [Documentation]    Clicks EOE menu and Ready to send
