@@ -31,9 +31,9 @@ open-menu-item
     END
     ${is_search}=    CommonUtilities.compare-strings    ${tab_name}    Search
     IF    ${is_search}
-        search-Keyword    ${navbar_tabs_selectors}[name]    ${sub_tab_name}
+        search-Keyword    ${navbar_tabs_selectors}[selector]    ${sub_tab_name}
     ELSE
-        select-menu-dropdown    ${navbar_tabs_selectors}[name]    ${navbar_tabs_selectors}[sub-tabs][${sub_tab_name}]
+        select-menu-dropdown    ${navbar_tabs_selectors}[selector]    ${navbar_tabs_selectors}[sub-tabs][${sub_tab_name}]
         
     END
 

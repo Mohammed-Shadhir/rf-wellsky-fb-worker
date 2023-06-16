@@ -17,11 +17,21 @@ e5:
       container: //tbody//div[@class="menuBar"]
       tabs:
         Go To:
-          name: //div[@class="menuBar"]/a[contains(@class, "menuButton") and text()="Go To"]
+          selector: //div[@class="menuBar"]/a[contains(@class, "menuButton") and text()="Go To"]
           sub-tabs:
             Billing Manager: //div[contains(@class, "menu")]//a[(@class="menuItem" or @class="menuitem") and . = "Billing Manager"]
         Search:
-          name: //div[@class="menuBar"]/a[contains(@class, "menuButton") and text()="Search"]
-          sub-tabs: 
+          selector: //div[@class="menuBar"]/a[contains(@class, "menuButton") and text()="Search"]
+          sub-tabs:
             search: //input[@id="KinnerMenuSearch"]
             value: //a[@class="hotbox" and contains(., $VALUE$)]
+    billing-manager:
+      post-condition-header: //h1[@class="ng-binding"]
+      sections:
+        Medicare:
+          heading: //div[@id="claimsManager"]/h3[text()="Medicare"]
+          menu-list:
+            EOE:
+              selector: //h3[text()="Medicare"]/following-sibling::div[1]//button[contains(text(),"EOE")]
+              options:
+                Ready to Send: //h3[text()="Medicare"]/following-sibling::div[1]//button[contains(text(),"EOE")]/parent::div/ul/li/a[text()="Ready to Send"]
