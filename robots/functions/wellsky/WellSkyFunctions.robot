@@ -4,6 +4,7 @@ Resource    ./robots/pages/wellsky/LoginPage.robot
 Resource    ./robots/pages/wellsky/common/Navbar.robot
 Resource    ./robots/pages/wellsky/BillingManagerPage.robot
 Resource    ./robots/functions/commons/CommonUtilities.robot
+Resource    ./robots/functions/commons/CollectionUtilities.robot
 
 
 *** Keywords ***
@@ -16,12 +17,14 @@ perform-login-process
     LoginPage.set-password
     LoginPage.perform-login
 
-navigate-to-billing-manager
-    [Documentation]    Clicks GOTO menu and Billing manager
+navigate-through-tab
+    [Documentation]    Clicks tab and sub-tab
     [Tags]    function
-    Navbar.open-menu-item    Search    1194
+    [Arguments]    ${tab}    ${sub_tab}
+    Navbar.open-menu-item    ${tab}    ${sub_tab}
 
-navigate-to-Eoe
-    [Documentation]    Clicks EOE menu and Ready to send
+navigate-to-claims-manager-page
+    [Documentation]    Clicks the claim button and clicks the claim status
     [Tags]    function
-    BillingManagerPage.open-claims-manager    Medicare    EOE    Ready to Send
+    [Arguments]    ${section}    ${claim_name}    ${claim_status}
+    BillingManagerPage.open-claims-manager    ${section}    ${claim_name}    ${claim_status}

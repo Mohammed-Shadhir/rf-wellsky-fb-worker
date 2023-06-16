@@ -12,8 +12,8 @@ Start
 Init
     load-selectors
     WellSkyFunctions.perform-login-process    E5bot1
-    WellSkyFunctions.navigate-to-billing-manager
-    WellSkyFunctions.navigate-to-Eoe
+    WellSkyFunctions.navigate-through-tab    Go To    Billing Manager
+    WellSkyFunctions.navigate-to-claims-manager-page    Medicare    EOE    Ready to Send
     Sleep    5s
 
 load-selectors

@@ -9,16 +9,10 @@ Resource    ./robots/components/commons/ComponentStatus.robot
 Resource    ./robots/resources/variables.resource
 
 
-*** Variables ***
-# ${tab_name}=    Go To
-# ${sub_tab_name}=    Billing Manager
-
-
 *** Keywords ***
 get-nav-bar-selectors
     [Documentation]    Gets selectors of particular tab
-    ${dictionary}=    Set Variable    ${selectors}[e5][wellsky][nav-bar]
-    RETURN    ${dictionary}
+    RETURN    ${selectors}[e5][wellsky][nav-bar]
 
 open-menu-item
     [Documentation]    This is used to open the menu item in the wellsky home page. SUB_TAB_NAME is an optional argument.
@@ -33,8 +27,9 @@ open-menu-item
     IF    ${is_search}
         search-Keyword    ${navbar_tabs_selectors}[selector]    ${sub_tab_name}
     ELSE
-        select-menu-dropdown    ${navbar_tabs_selectors}[selector]    ${navbar_tabs_selectors}[sub-tabs][${sub_tab_name}]
-        
+        select-menu-dropdown
+        ...    ${navbar_tabs_selectors}[selector]
+        ...    ${navbar_tabs_selectors}[sub-tabs][${sub_tab_name}]
     END
 
 search-Keyword
@@ -44,12 +39,14 @@ search-Keyword
         ${navbar_selector}=    get-nav-bar-selectors
         ButtonComponent.left-click    ${tab_selector}
         ${keyword}=    Convert To String    ${keyword}
-        InputTextComponent.set-value    ${navbar_selector}[tabs][Search][sub-tabs][search]        ${keyword}    3
+        InputTextComponent.set-value    ${navbar_selector}[tabs][Search][sub-tabs][search]    ${keyword}    3
         Press Keys    ${navbar_selector}[tabs][Search][sub-tabs][search]    Enter
-        ${search_value}=    Replace String    ${navbar_selector}[tabs][Search][sub-tabs][value]    $VALUE$    ${keyword}
+        ${search_value}=    Replace String
+        ...    ${navbar_selector}[tabs][Search][sub-tabs][value]
+        ...    $VALUE$
+        ...    ${keyword}
         Sleep    3s
         ButtonComponent.left-click    ${search_value}
-
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${MENU_BUTTON_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_ENABLED}

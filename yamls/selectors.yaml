@@ -26,7 +26,6 @@ e5:
             search: //input[@id="KinnerMenuSearch"]
             value: //a[@class="hotbox" and contains(., $VALUE$)]
     billing-manager:
-      post-condition-header: //h1[@class="ng-binding"]
       sections:
         Medicare:
           heading: //div[@id="claimsManager"]/h3[text()="Medicare"]
@@ -35,3 +34,9 @@ e5:
               selector: //h3[text()="Medicare"]/following-sibling::div[1]//button[contains(text(),"EOE")]
               options:
                 Ready to Send: //h3[text()="Medicare"]/following-sibling::div[1]//button[contains(text(),"EOE")]/parent::div/ul/li/a[text()="Ready to Send"]
+    claims-manager:
+      heading: //h1[@class="ng-binding"]
+      tabs:
+        Ready to Send:
+          link: //a[@id="readyToSendClaims"]
+          container: //a[@id="readyToSendClaims"]/parent::li
