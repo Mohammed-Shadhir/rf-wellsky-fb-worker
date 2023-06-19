@@ -40,3 +40,23 @@ check-string-contains
     ...    ${None}
     ...    () => `${string1}`.includes(`${string2}`)
     RETURN    ${result}
+
+replace-dynamic-values-in-selector
+    [Documentation]    Method used to replace the dynamic value in the selector
+    [Arguments]    ${selector}    ${placeholder_value_dict}
+    ${result}=    Set Variable    ${selector}
+    FOR    ${key}    ${value}    IN    &{placeholder_value_dict}
+        ${value_to_replace}=    enclose-with-single-quote-if-contains-double-quotes    ${value}
+        ${result}=    Replace String    ${result}    "${key}"    ${value_to_replace}    count=1
+    END
+    RETURN    ${result}
+
+enclose-with-single-quote-if-contains-double-quotes
+    [Documentation]    Method used to enclose the string with single quotes
+    ...    if the string contains double quotes
+    [Arguments]    ${string}
+    [Tags]    function
+    ${result}=    RPA.Browser.Playwright.Evaluate JavaScript
+    ...    ${None}
+    ...    () => `${string}`.indexOf(`"`) > -1 ? `'${string}'` : `"${string}"`
+    RETURN    ${result}

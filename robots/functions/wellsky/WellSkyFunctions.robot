@@ -3,6 +3,7 @@ Library     RPA.Browser.Playwright
 Resource    ./robots/pages/wellsky/LoginPage.robot
 Resource    ./robots/pages/wellsky/common/Navbar.robot
 Resource    ./robots/pages/wellsky/BillingManagerPage.robot
+Resource    ./robots/pages/wellsky/ClaimsManagerPage.robot
 Resource    ./robots/functions/commons/CommonUtilities.robot
 Resource    ./robots/functions/commons/CollectionUtilities.robot
 
@@ -28,3 +29,8 @@ navigate-to-claims-manager-page
     [Tags]    function
     [Arguments]    ${section}    ${claim_name}    ${claim_status}
     BillingManagerPage.open-claims-manager    ${section}    ${claim_name}    ${claim_status}
+
+get-payers-list-from-claims-manager-page
+    [Documentation]    Gets the list of payers available in the page
+    ${payers}=    ClaimsManagerPage.get-payers-list
+    RETURN    ${payers}

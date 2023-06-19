@@ -26,16 +26,12 @@ e5:
             search: //input[@id="KinnerMenuSearch"]
             value: //a[@class="hotbox" and contains(., $VALUE$)]
     billing-manager:
-      sections:
-        Medicare:
-          heading: //div[@id="claimsManager"]/h3[text()="Medicare"]
-          menu-list:
-            EOE:
-              selector: //h3[text()="Medicare"]/following-sibling::div[1]//button[contains(text(),"EOE")]
-              options:
-                Ready to Send: //h3[text()="Medicare"]/following-sibling::div[1]//button[contains(text(),"EOE")]/parent::div/ul/li/a[text()="Ready to Send"]
+      section-header: //div[@id="claimsManager"]/h3[text()="$SECTION_HEADER$"]
+      claim-dropdown: //h3[text()="$SECTION_HEADER$"]/following-sibling::div[1]//button[contains(text(),"$CLAIM_DROPDOWN$")]
+      claim-option: //h3[text()="$SECTION_HEADER$"]/following-sibling::div[1]//button[contains(text(),"$CLAIM_DROPDOWN$")]/parent::div/ul/li/a[text()="$CLAIM_OPTION$"]
     claims-manager:
       heading: //h1[@class="ng-binding"]
+      payers-select: //label[@for="claimPayer" and text()="Payer:"]/parent::div//select
       tabs:
         Ready to Send:
           link: //a[@id="readyToSendClaims"]
