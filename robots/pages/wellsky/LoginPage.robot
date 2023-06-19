@@ -63,7 +63,6 @@ set-password
     END
 
 perform-login
-    Sleep    1s
     # PreCondition guard
     ${has_precondition_passed}=    CommonUtilities.check-page-title-and-data-form-name
     ...    xpath=${login_page_xpath}
@@ -83,7 +82,7 @@ perform-login
     END
 
     ${error-message-selector}=    get-loginform-selector    error-message
-    Sleep    1s
+    Sleep    0.5s
     ${is-attached}=    ComponentStatus.is-attached    ${error-message-selector}
     IF    ${is-attached} == ${True}
         ${error-message-selector-element}=    RPA.Browser.Playwright.Get Element    ${error-message-selector}

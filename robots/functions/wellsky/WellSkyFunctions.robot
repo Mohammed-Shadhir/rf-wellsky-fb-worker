@@ -34,3 +34,10 @@ get-payers-list-from-claims-manager-page
     [Documentation]    Gets the list of payers available in the page
     ${payers}=    ClaimsManagerPage.get-payers-list
     RETURN    ${payers}
+
+select-payer-and-send-claim-in-claims-manager-page
+    [Documentation]    Sets the payer and sends claim
+    [Arguments]    ${payer_value}    ${payer_name}    ${action}
+    ClaimsManagerPage.select-payer-by-value    ${payer_value}    ${payer_name}
+
+    # check select all checkbox and send claim action here

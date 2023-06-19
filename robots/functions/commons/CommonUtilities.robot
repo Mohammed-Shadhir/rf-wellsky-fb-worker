@@ -54,8 +54,8 @@ replace-dynamic-values-in-selector
 enclose-with-single-quote-if-contains-double-quotes
     [Documentation]    Method used to enclose the string with single quotes
     ...    if the string contains double quotes
-    [Arguments]    ${string}
     [Tags]    function
+    [Arguments]    ${string}
     ${result}=    RPA.Browser.Playwright.Evaluate JavaScript
     ...    ${None}
     ...    () => `${string}`.indexOf(`"`) > -1 ? `'${string}'` : `"${string}"`

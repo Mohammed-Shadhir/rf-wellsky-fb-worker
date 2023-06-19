@@ -66,7 +66,7 @@ select-menu-dropdown
         Exception.custom-fail    ${MENU_BUTTON_NOT_ENABLED}
     END
 
-    Sleep    2s
+    Sleep    0.5s
 
     TRY
         ButtonComponent.left-click    ${sub_tab_selector}

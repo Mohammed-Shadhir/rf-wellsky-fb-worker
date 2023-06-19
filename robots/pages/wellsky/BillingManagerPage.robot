@@ -24,11 +24,20 @@ open-claims-manager
     ${section_selector}=    get-selector-in-billing-manager    section-header
     ${claim_name_selector}=    get-selector-in-billing-manager    claim-dropdown
     ${claim_status_selector}=    get-selector-in-billing-manager    claim-option
-    
-    ${placeholder_dict}=    Create Dictionary    $SECTION_HEADER$=${section}    $CLAIM_DROPDOWN$=${claim_name}    $CLAIM_OPTION$=${claim_status}
-    ${section_selector}=    CommonUtilities.replace-dynamic-values-in-selector    ${section_selector}    ${placeholder_dict}
-    ${claim_name_selector}=    CommonUtilities.replace-dynamic-values-in-selector    ${claim_name_selector}    ${placeholder_dict}
-    ${claim_status_selector}=    CommonUtilities.replace-dynamic-values-in-selector    ${claim_status_selector}    ${placeholder_dict}
+
+    ${placeholder_dict}=    Create Dictionary
+    ...    $SECTION_HEADER$=${section}
+    ...    $CLAIM_DROPDOWN$=${claim_name}
+    ...    $CLAIM_OPTION$=${claim_status}
+    ${section_selector}=    CommonUtilities.replace-dynamic-values-in-selector
+    ...    ${section_selector}
+    ...    ${placeholder_dict}
+    ${claim_name_selector}=    CommonUtilities.replace-dynamic-values-in-selector
+    ...    ${claim_name_selector}
+    ...    ${placeholder_dict}
+    ${claim_status_selector}=    CommonUtilities.replace-dynamic-values-in-selector
+    ...    ${claim_status_selector}
+    ...    ${placeholder_dict}
 
     # Pre-condition
     ${is-section-attached}=    ComponentStatus.is-attached    ${section_selector}
@@ -42,7 +51,7 @@ open-claims-manager
     EXCEPT    ${ELEMENT_NOT_ENABLED}
         Exception.custom-fail    ${CLAIM_BUTTON_NOT_ENABLED_IN_BILLING_MANAGER_PAGE}
     END
-    Sleep    2s
+    Sleep    0.5s
     TRY
         ButtonComponent.left-click    ${claim_status_selector}
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
@@ -50,7 +59,7 @@ open-claims-manager
     EXCEPT    ${ELEMENT_NOT_ENABLED}
         Exception.custom-fail    ${CLAIM_STATUS_NOT_ENABLED_IN_BILLING_MANAGER_PAGE}
     END
-    
+
     # Post-condition
     ${claims_manager_heading}=    Set Variable    Claims Manager:
     ${is_patient_section}=    CommonUtilities.compare-strings    ${section}    Patients
