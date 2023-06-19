@@ -8,6 +8,7 @@ Resource    ./robots/components/SelectComponent.robot
 Resource    ./robots/components/ButtonComponent.robot
 Resource    ./robots/components/commons/ComponentStatus.robot
 Resource    ./robots/resources/variables.resource
+Resource    ./robots/components/CheckboxComponent.robot
 
 
 *** Keywords ***
@@ -49,3 +50,48 @@ select-payer-by-value
     EXCEPT    ${POSTCONDITION_FAILED}
         Exception.custom-fail    ${POSTCONDITION_UNABLE_TO_SELECT_PAYER}
     END
+    ${payer_options}=    Get Select Options    ${payers_selector}[payers-select]
+    RETURN    ${payer_options}
+
+select-header-patient-checkbox
+    [Documentation]    Checks the checkbox in the header in the page
+    ${checkbox_selector}=    get-claims-manager-selectors
+    TRY
+        CheckboxComponent.set-checkbox-value-and-validate-post-condition    ${checkbox_selector}[header-checkbox]    ${True} 
+    EXCEPT    ${ELEMENT_NOT_ATTACHED}
+        Exception.custom-fail    ${PRECONDITION_HEADER_CHECKBOX_NOT_ATTACHED}
+    EXCEPT    ${ELEMENT_NOT_ENABLED}
+        Exception.custom-fail    ${PRECONDITION_HEADER_CHECKBOX_NOT_ENABLED}
+    EXCEPT    ${POSTCONDITION_FAILED}
+        Exception.custom-fail    ${POST_CONDITION_UNABLE_TO_CHECK_CHECKBOX}   
+    END
+
+click-claim-actions
+    [Documentation]    Clicks on the claim action button in the page
+    ${claim_action_selector}=    get-claims-manager-selectors
+    TRY
+        Log To Console    ${claim_action_selector}[tabs][Ready to Send][claim-button]
+        ButtonComponent.left-click    ${claim_action_selector}[tabs][Ready to Send][claim-button]
+    EXCEPT    ${ELEMENT_NOT_ATTACHED}
+        Exception.custom-fail    ${PRECONDITION_CLAIM_BUTTON_NOT_ATTACHED}
+    EXCEPT    ${ELEMENT_NOT_ENABLED}
+        Exception.custom-fail    ${PRECONDITION_CLAIM_BUTTON_NOT_ENABLED}
+    END
+    # Postcondition checks if the dropdown is open
+    Validation.fail-if-not-attached    //span[@class="dropdown open"]
+
+select-claim-action
+    [Documentation]    Selects the claim action in the dropdown
+    [Arguments]    ${claim_action}
+    ${claim_action_dropdown_selector}=    get-claims-manager-selectors
+    TRY
+        SelectComponent.select-single-option    ${claim_action_dropdown_selector}[tabs][Ready to Send][claim-action]    value    ${claim_action}
+    EXCEPT    ${ELEMENT_NOT_ATTACHED}
+        Exception.custom-fail    ${PRECONDITION_ACTION_SELECT_BOX_NOT_ATTACHED}
+    EXCEPT    ${ELEMENT_NOT_ENABLED}
+        Exception.custom-fail    ${PRECONDITION_ACTION_SELECT_BOX_NOT_ENABLED}
+    EXCEPT    ${POSTCONDITION_FAILED}
+        Exception.custom-fail    ${POSTCONDITION_ACTION_TO_SELECT_PAYER}
+    END
+
+
