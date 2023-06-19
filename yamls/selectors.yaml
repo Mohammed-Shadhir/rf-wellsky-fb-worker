@@ -32,7 +32,10 @@ e5:
     claims-manager:
       heading: //h1[@class="ng-binding"]
       payers-select: //label[@for="claimPayer" and text()="Payer:"]/parent::div//select
+      header-checkbox:
       tabs:
         Ready to Send:
           link: //a[@id="readyToSendClaims"]
           container: //a[@id="readyToSendClaims"]/parent::li
+          claim-button: //span[@class="dropdown"]//a[text()="Claim Actions"]
+          claim-action:

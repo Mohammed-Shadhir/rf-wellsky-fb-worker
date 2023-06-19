@@ -18,6 +18,7 @@ Init
     Log To Console    ${payers}
     WellSkyFunctions.select-payer-and-send-claim-in-claims-manager-page    3    Banner    Send Electronically
     Sleep    5s
+    WellSkyFunctions.click-and-send-claim
 
 load-selectors
     ${selectors}=    Config.Initialize Selectors    ./yamls/selectors.yaml
