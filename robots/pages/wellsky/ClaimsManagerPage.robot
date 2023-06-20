@@ -66,7 +66,7 @@ select-header-patient-checkbox
         Exception.custom-fail    ${POST_CONDITION_UNABLE_TO_CHECK_CHECKBOX}   
     END
 
-click-claim-actions
+click-claim-action-button
     [Documentation]    Clicks on the claim action button in the page
     ${claim_action_selector}=    get-claims-manager-selectors
     TRY
@@ -78,14 +78,14 @@ click-claim-actions
         Exception.custom-fail    ${PRECONDITION_CLAIM_BUTTON_NOT_ENABLED}
     END
     # Postcondition checks if the dropdown is open
-    Validation.fail-if-not-attached    //span[@class="dropdown open"]
+    Validation.fail-if-not-attached    ${claim_action_selector}[tabs][Ready to Send][claim-dropdown]
 
-select-claim-action
+select-claim-action-dropdown
     [Documentation]    Selects the claim action in the dropdown
     [Arguments]    ${claim_action}
     ${claim_action_dropdown_selector}=    get-claims-manager-selectors
     TRY
-        SelectComponent.select-single-option    ${claim_action_dropdown_selector}[tabs][Ready to Send][claim-action]    value    ${claim_action}
+        ButtonComponent.left-click    ${claim_action_dropdown_selector}[tabs][Ready to Send][claim-action][${claim_action}]
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${PRECONDITION_ACTION_SELECT_BOX_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_ENABLED}

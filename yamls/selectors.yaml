@@ -38,4 +38,6 @@ e5:
           link: //a[@id="readyToSendClaims"]
           container: //a[@id="readyToSendClaims"]/parent::li
           claim-button: //span[@class="dropdown"]//a[text()="Claim Actions"]
+          claim-dropdown: //span[@class="dropdown open"]
           claim-action:
+            Send Electronically: 

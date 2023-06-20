@@ -39,6 +39,6 @@ select-payer-and-send-claim-in-claims-manager-page
     [Documentation]    Sets the payer and sends claim
     [Arguments]    ${payer_value}    ${payer_name}    ${action}
     ClaimsManagerPage.select-payer-by-value    ${payer_value}    ${payer_name}
-    ClaimsManagerPage.click-claim-actions
+    ClaimsManagerPage.click-claim-action-button
 
     # check select all checkbox and send claim action here
