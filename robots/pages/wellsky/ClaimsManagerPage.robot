@@ -100,4 +100,15 @@ select-claim-action-dropdown
         Exception.custom-fail    ${POSTCONDITION_ACTION_TO_SELECT_PAYER}
     END
 
-
+get-table-row-count
+    [Documentation]    Returns the number of rows in the table and returns the
+    ...    count with type integer    
+    ${table_selector}=    get-claims-manager-selectors    
+    ${row_count}=    Get Element Count    ${table_selector}[table-container]
+    ${row_count}=    Convert To Integer    ${row_count}
+    ${no_records}=    ComponentStatus.is-attached    ${table_selector}[table-container]/td[ contains(. , "no records")]
+    IF    ${row_count} == 1 and ${no_records}
+        ${row_count}    Set Variable    0
+    END
+    Log To Console    <========Log message::The number of rows are: ${row_count}==========>
+    RETURN    ${row_count}
