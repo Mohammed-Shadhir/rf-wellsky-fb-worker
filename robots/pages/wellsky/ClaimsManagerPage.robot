@@ -53,11 +53,14 @@ select-payer-by-value
     ${payer_options}=    Get Select Options    ${payers_selector}[payers-select]
     RETURN    ${payer_options}
 
-select-header-patient-checkbox
+select-header-checkbox
     [Documentation]    Checks the checkbox in the header in the page
     ${checkbox_selector}=    get-claims-manager-selectors
     TRY
-        CheckboxComponent.set-checkbox-value-and-validate-post-condition    ${checkbox_selector}[header-checkbox]    ${True} 
+        CheckboxComponent.set-checkbox-value-and-validate-post-condition    
+        ...    ${checkbox_selector}[checkbox][header-checkbox]    
+        ...    ${True}    
+        ...    ${checkbox_selector}[checkbox][post-validation] 
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${PRECONDITION_HEADER_CHECKBOX_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_ENABLED}
@@ -70,7 +73,6 @@ click-claim-action-button
     [Documentation]    Clicks on the claim action button in the page
     ${claim_action_selector}=    get-claims-manager-selectors
     TRY
-        Log To Console    ${claim_action_selector}[tabs][Ready to Send][claim-button]
         ButtonComponent.left-click    ${claim_action_selector}[tabs][Ready to Send][claim-button]
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${PRECONDITION_CLAIM_BUTTON_NOT_ATTACHED}
@@ -85,7 +87,11 @@ select-claim-action-dropdown
     [Arguments]    ${claim_action}
     ${claim_action_dropdown_selector}=    get-claims-manager-selectors
     TRY
-        ButtonComponent.left-click    ${claim_action_dropdown_selector}[tabs][Ready to Send][claim-action][${claim_action}]
+        ${action}    Create Dictionary    $CLAIM_ACTION$=${claim_action}
+        ${dropdown_selector}=    CommonUtilities.replace-dynamic-values-in-selector    
+        ...    ${claim_action_dropdown_selector}[tabs][Ready to Send][claim-action]    
+        ...    ${action}
+        ButtonComponent.left-click    ${dropdown_selector} 
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${PRECONDITION_ACTION_SELECT_BOX_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_ENABLED}

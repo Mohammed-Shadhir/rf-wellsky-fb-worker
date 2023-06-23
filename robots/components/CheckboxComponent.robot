@@ -19,7 +19,7 @@ set-checkbox-value-and-validate-post-condition
     [Documentation]    Updates the Field value and checks for post condition
     ...    And retries if the retry value is provided
     [Tags]     component
-    [Arguments]    ${selector}    ${perform_check}
+    [Arguments]    ${selector}    ${perform_check}    ${post_condition_selector}
     Validation.fail-if-not-enabled    ${selector}
     Validation.fail-if-not-attached    ${selector}
     IF    ${perform_check} == ${True}
@@ -29,5 +29,8 @@ set-checkbox-value-and-validate-post-condition
         ## Performs Uncheck Operation
         Uncheck Checkbox    ${selector}    force=True
     END
-    ${is_checked}=    CheckboxComponent.get-value    ${selector}
-    IF    ${is_checked} != ${perform_check}    Fail    ${POSTCONDITION_FAILED}
+    TRY
+        Validation.fail-if-not-attached    ${post_condition_selector}
+    EXCEPT   
+        Exception.custom-fail    ${POST_CONDITION_UNABLE_TO_CHECK_CHECKBOX}
+    END

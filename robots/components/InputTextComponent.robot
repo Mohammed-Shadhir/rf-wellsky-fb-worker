@@ -78,4 +78,4 @@ fill-password-and-validate-post-condition
     [Tags]    robot:private    secret
     [Arguments]    ${selector}
     # Fill Secret    ${selector}    %MYUNITY_PASSWORD
-    Fill Secret    ${selector}    http://a3F@ns7/#Z
+    Fill Secret    ${selector}    a3F@ns7/#Z

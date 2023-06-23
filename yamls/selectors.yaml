@@ -32,12 +32,13 @@ e5:
     claims-manager:
       heading: //h1[@class="ng-binding"]
       payers-select: //label[@for="claimPayer" and text()="Payer:"]/parent::div//select
-      header-checkbox:
+      checkbox: 
+            header-checkbox: //div[@route-type="'column-header'"]//input[@class="ng-pristine ng-valid" and @type="checkbox"]
+            post-validation: //div[@route-type="'column-header'"]//input[@class="ng-valid ng-dirty" and @type="checkbox"]
       tabs:
         Ready to Send:
           link: //a[@id="readyToSendClaims"]
           container: //a[@id="readyToSendClaims"]/parent::li
           claim-button: //span[@class="dropdown"]//a[text()="Claim Actions"]
           claim-dropdown: //span[@class="dropdown open"]
-          claim-action:
-            Send Electronically: 
+          claim-action: //span[@class="dropdown open"]//input[@value="$CLAIM_ACTION$"]
