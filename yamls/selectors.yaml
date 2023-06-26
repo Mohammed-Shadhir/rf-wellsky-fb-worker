@@ -4,6 +4,7 @@ e5:
     header:
       breadcrumb: id=breadcrumb
       home-page: //img[@class="header-img" and @id="menuImg"]
+      loader: '//div[@id="globalAjaxLoader" and @style="display: none;"]'
     loginpage:
       title: //title
       loginform:

@@ -8,6 +8,7 @@ Resource    ./robots/components/ButtonComponent.robot
 Resource    ./robots/components/commons/ComponentStatus.robot
 Resource    ./robots/pages/wellsky/ClaimsManagerPage.robot
 Resource    ./robots/resources/variables.resource
+Resource    ./robots/pages/wellsky/common/Header.robot
 
 
 *** Keywords ***
@@ -38,7 +39,7 @@ open-claims-manager
     ${claim_status_selector}=    CommonUtilities.replace-dynamic-values-in-selector
     ...    ${claim_status_selector}
     ...    ${placeholder_dict}
-
+    Header.wait-for-loader
     # Pre-condition
     ${is-section-attached}=    ComponentStatus.is-attached    ${section_selector}
     IF    ${is-section-attached} == ${False}
@@ -59,7 +60,7 @@ open-claims-manager
     EXCEPT    ${ELEMENT_NOT_ENABLED}
         Exception.custom-fail    ${CLAIM_STATUS_NOT_ENABLED_IN_BILLING_MANAGER_PAGE}
     END
-
+    Header.wait-for-loader
     # Post-condition
     ${claims_manager_heading}=    Set Variable    Claims Manager:
     ${is_patient_section}=    CommonUtilities.compare-strings    ${section}    Patients

@@ -6,6 +6,7 @@ Resource    ./robots/functions/commons/CommonUtilities.robot
 Resource    ./robots/components/InputTextComponent.robot
 Resource    ./robots/components/ButtonComponent.robot
 Resource    ./robots/components/commons/ComponentStatus.robot
+Resource    ./robots/pages/wellsky/common/Header.robot
 
 
 *** Variables ***
@@ -31,7 +32,7 @@ set-username
     END
     TRY
         ${user-name-selector}=    get-loginform-selector    username
-        InputTextComponent.set-value    ${user-name-selector}    ${username}    ${global-retry-count}    
+        InputTextComponent.set-value    ${user-name-selector}    ${username}    ${global-retry-count}
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${USERNAME_FIELD_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_EDITABLE}
@@ -51,7 +52,7 @@ set-password
 
     TRY
         ${password-selector}=    get-loginform-selector    password
-        InputTextComponent.set-password-secret    ${password-selector}    ${global-retry-count}    
+        InputTextComponent.set-password-secret    ${password-selector}    ${global-retry-count}
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${PASSWORD_FIELD_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_EDITABLE}
@@ -73,7 +74,7 @@ perform-login
     TRY
         ${login-button-selector}=    get-loginform-selector    login-btn
         Handle Future Dialogs    action=accept
-        ButtonComponent.left-click    ${login-button-selector}    
+        ButtonComponent.left-click    ${login-button-selector}
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
         Exception.custom-fail    ${LOGIN_BUTTON_NOT_ATTACHED}
     EXCEPT    ${ELEMENT_NOT_ENABLED}
@@ -93,10 +94,10 @@ perform-login
             Exception.custom-fail    ${INVALID_CREDENTIALS_ERROR}
         END
     END
-
+    Header.wait-for-loader
     # PostCondition guard
-    # ${headermenu-selector}=    get-headermenu-selector
-    ${login_postcondition_flag}=    ComponentStatus.is-visible    xpath=//tbody//div[@class="menuBar"]
+    ${navbar_selector}=    get-navbar-selector
+    ${login_postcondition_flag}=    ComponentStatus.is-visible    ${navbar_selector}
     IF    ${login_postcondition_flag} == ${False}
         ${has_precondition_passed}=    CommonUtilities.check-page-title-and-data-form-name
         ...    xpath=${login_page_xpath}
@@ -104,7 +105,7 @@ perform-login
         IF    ${has_precondition_passed} == ${False}
             Log To Console    <== Found blank page after clicking the login button, Reloading the page ==>
             Reload
-            ${login_postcondition_flag}=    ComponentStatus.is-visible    xpath=//tbody//div[@class="menuBar"]
+            ${login_postcondition_flag}=    ComponentStatus.is-visible    ${navbar_selector}
         ELSE
             Log To Console    <== After clicking the login button, still in the login page ==>
         END
@@ -114,3 +115,6 @@ perform-login
 get-loginform-selector
     [Arguments]    ${field-selector}
     RETURN    ${selectors}[e5][wellsky][loginpage][loginform][${field-selector}]
+
+get-navbar-selector
+    RETURN    ${selectors}[e5][wellsky][nav-bar][container]
