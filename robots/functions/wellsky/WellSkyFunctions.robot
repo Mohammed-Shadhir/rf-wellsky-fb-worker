@@ -15,7 +15,6 @@ perform-login-process
     [Documentation]    Performs Login Process
     [Tags]    function
     [Arguments]    ${username}
-    CommonUtilities.launch
     LoginPage.set-username    ${username}
     LoginPage.set-password
     LoginPage.perform-login
@@ -49,11 +48,7 @@ get-payers-list-from-claims-manager-page
         ${payers}=    ClaimsManagerPage.get-payers-list
         Set To Dictionary    ${item}    payers=${payers}
     END
-
-    Log To Console    ${billing_managers}
-    ${json_response_payload}=    Json.Dumps    ${billing_managers}
-
-    RETURN    ${json_response_payload}
+    RETURN    ${billing_managers}
 
 select-payer-and-send-claim-in-claims-manager-page
     [Documentation]    Sets the payer and sends claim

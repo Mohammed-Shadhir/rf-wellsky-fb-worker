@@ -2,6 +2,7 @@
 Library     Config
 Resource    ./robots/functions/wellsky/WellSkyFunctions.robot
 Resource    ./robots/functionblocks/ExportPayersList.robot
+Resource    ./robots/functions/commons/CommonUtilities.robot
 
 
 *** Tasks ***
@@ -12,6 +13,7 @@ Start
 *** Keywords ***
 Init
     load-selectors
+    CommonUtilities.launch
     WellSkyFunctions.perform-login-process    E5bot3
     Set Browser Timeout    1m 30 seconds
     ExportPayersList.export-payers-list    ${EMPTY}

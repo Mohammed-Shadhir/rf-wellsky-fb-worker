@@ -78,4 +78,5 @@ fill-password-and-validate-post-condition
     [Tags]    robot:private    secret
     [Arguments]    ${selector}
     # Fill Secret    ${selector}    %MYUNITY_PASSWORD
-    Fill Secret    ${selector}    a3F@ns7/#Z
+    ${password}=    Set Variable    a3F@ns7/#Z
+    Fill Secret    ${selector}    ${password}

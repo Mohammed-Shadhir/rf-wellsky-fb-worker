@@ -82,7 +82,7 @@ perform-login
     END
 
     ${error-message-selector}=    get-loginform-selector    error-message
-    Sleep    0.5s
+    Sleep    1s
     ${is-attached}=    ComponentStatus.is-attached    ${error-message-selector}
     IF    ${is-attached} == ${True}
         ${error-message-selector-element}=    RPA.Browser.Playwright.Get Element    ${error-message-selector}
@@ -94,7 +94,7 @@ perform-login
             Exception.custom-fail    ${INVALID_CREDENTIALS_ERROR}
         END
     END
-    Header.wait-for-loader
+    # Header.wait-for-loader
     # PostCondition guard
     ${navbar_selector}=    get-navbar-selector
     ${login_postcondition_flag}=    ComponentStatus.is-visible    ${navbar_selector}
@@ -118,3 +118,4 @@ get-loginform-selector
 
 get-navbar-selector
     RETURN    ${selectors}[e5][wellsky][nav-bar][container]
+
