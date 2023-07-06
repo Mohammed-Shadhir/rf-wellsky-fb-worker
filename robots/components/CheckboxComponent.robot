@@ -15,6 +15,13 @@ get-value
     ${is_checked}=    Get Checkbox State    ${selector}
     RETURN    ${is_checked}
 
+set-value
+    [Documentation]    Updates the Field value and checks for post condition
+    ...    And retries if the retry value is provided
+    [Tags]    component
+    [Arguments]    ${selector}    ${perform_check}    ${post_condition_selector}
+    CheckboxComponent.set-checkbox-value-and-validate-post-condition    ${selector}    ${perform_check}    ${post_condition_selector}
+
 set-checkbox-value-and-validate-post-condition
     [Documentation]    Updates the Field value and checks for post condition
     ...    And retries if the retry value is provided

@@ -14,7 +14,7 @@ get-nav-bar-selectors
     [Documentation]    Gets selectors of particular tab
     RETURN    ${selectors}[e5][wellsky][nav-bar]
 
-open-menu-item
+navigate
     [Documentation]    This is used to open the menu item in the wellsky home page. SUB_TAB_NAME is an optional argument.
     [Arguments]    ${tab_name}    ${sub_tab_name}
     ${navbar_selectors}=    get-nav-bar-selectors

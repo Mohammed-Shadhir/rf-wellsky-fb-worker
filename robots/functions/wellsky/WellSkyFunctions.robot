@@ -23,7 +23,7 @@ navigate-through-tab
     [Documentation]    Clicks tab and sub-tab
     [Tags]    function
     [Arguments]    ${tab}    ${sub_tab}
-    Navbar.open-menu-item    ${tab}    ${sub_tab}
+    Navbar.navigate    ${tab}    ${sub_tab}
 
 navigate-to-claims-manager-page
     [Documentation]    Clicks the claim button and clicks the claim status
@@ -54,9 +54,8 @@ select-payer-and-send-claim-in-claims-manager-page
     [Documentation]    Sets the payer and sends claim
     [Arguments]    ${payer_value}    ${payer_name}    ${action}
     ClaimsManagerPage.select-payer-by-value    ${payer_value}    ${payer_name}
-    ClaimsManagerPage.select-patients-checkbox
+    ClaimsManagerPage.select-all-patients
     ClaimsManagerPage.get-table-row-count
-    ClaimsManagerPage.click-claim-action-button
-    ClaimsManagerPage.select-claim-action-dropdown    ${action}
+    ClaimsManagerPage.send-claims    ${action}
 
     # check select all checkbox and send claim action here

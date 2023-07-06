@@ -55,11 +55,11 @@ select-payer-by-value
     ${payer_options}=    Get Select Options    ${payers_selector}[payers-select]
     RETURN    ${payer_options}
 
-select-patients-checkbox
+select-all-patients
     [Documentation]    Checks the checkbox in the header in the page
     ${checkbox_selector}=    get-claims-manager-selectors
     TRY
-        CheckboxComponent.set-checkbox-value-and-validate-post-condition
+        CheckboxComponent.set-value
         ...    ${checkbox_selector}[checkbox][header-checkbox]
         ...    ${True}
         ...    ${checkbox_selector}[checkbox][post-validation]
@@ -71,8 +71,9 @@ select-patients-checkbox
         Exception.custom-fail    ${POST_CONDITION_UNABLE_TO_CHECK_CHECKBOX}
     END
 
-click-claim-action-button
+send-claims
     [Documentation]    Clicks on the claim action button in the page
+    [Arguments]    ${claim_action}
     ${claim_action_selector}=    get-claims-manager-selectors
     TRY
         ButtonComponent.left-click    ${claim_action_selector}[tabs][Ready to Send][claim-button]
@@ -84,14 +85,10 @@ click-claim-action-button
     # Postcondition checks if the dropdown is open
     Validation.fail-if-not-attached    ${claim_action_selector}[tabs][Ready to Send][claim-dropdown]
 
-select-claim-action-dropdown
-    [Documentation]    Selects the claim action in the dropdown
-    [Arguments]    ${claim_action}
-    ${claim_action_dropdown_selector}=    get-claims-manager-selectors
     TRY
         ${action}=    Create Dictionary    $CLAIM_ACTION$=${claim_action}
         ${dropdown_selector}=    CommonUtilities.replace-dynamic-values-in-selector
-        ...    ${claim_action_dropdown_selector}[tabs][Ready to Send][claim-action]
+        ...    ${claim_action_selector}[tabs][Ready to Send][claim-action]
         ...    ${action}
         ButtonComponent.left-click    ${dropdown_selector}
     EXCEPT    ${ELEMENT_NOT_ATTACHED}
